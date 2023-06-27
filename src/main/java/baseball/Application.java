@@ -81,8 +81,24 @@ public class Application {
 		return ballCount;
 	}
 
+	public static void printHint(String randomNumber, String userGuessNumber) {
+		int strikeCount = calculateStrikeCount(randomNumber, userGuessNumber);
+		int ballCount = calculateBallCount(randomNumber, userGuessNumber);
+
+		StringBuilder hint = new StringBuilder();
+
+		if (ballCount != 0) {
+			hint.append(ballCount).append("볼 ");
+		}
+
+		if (strikeCount != 0) {
+			hint.append(strikeCount).append("스트라이크");
+		}
+
+		System.out.println(hint);
+	}
+
 	public static void main(String[] args) {
 		//TODO: 숫자 야구 게임 구현
-
 	}
 }
