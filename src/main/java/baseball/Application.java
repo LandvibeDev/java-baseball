@@ -67,6 +67,20 @@ public class Application {
 		return strikeCount;
 	}
 
+	public static int calculateBallCount(String randomNumber, String userGuessNumber) {
+		int ballCount = 0;
+
+		for (int numberIndex = 0; numberIndex < 3; numberIndex++) {
+			String guessDigit = String.valueOf(userGuessNumber.charAt(numberIndex));
+
+			if (randomNumber.contains(guessDigit) && randomNumber.indexOf(guessDigit) != numberIndex) {
+				ballCount++;
+			}
+		}
+
+		return ballCount;
+	}
+
 	public static void main(String[] args) {
 		//TODO: 숫자 야구 게임 구현
 
