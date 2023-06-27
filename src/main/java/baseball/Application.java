@@ -28,35 +28,31 @@ public class Application {
 		return userGuessNumber;
 	}
 
-	public static boolean validateUserGuessNumber(String userGuessNumber) {
-		boolean isValidate = true;
-		try {
-			// 3자리 수인지 검증
-			if (userGuessNumber.length() != 3) {
-				throw new IllegalArgumentException();
-			}
-
-			//숫자인지 검증
-			if (!userGuessNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
-				throw new IllegalArgumentException();
-			}
-
-			//서로 다른 수로 이루어졌는지 검증
-			Set<Character> digitSet = new HashSet<>();
-			for (char digit : userGuessNumber.toCharArray()) {
-				digitSet.add(digit);
-			}
-
-			if (digitSet.size() != 3) {
-				throw new IllegalArgumentException();
-			}
-
-		} catch (IllegalArgumentException e) {
-			isValidate = false;
-			System.err.println("올바르지 않은 입력으로 인해 프로그램을 종료합니다.");
+	public static void validateUserGuessNumber(String userGuessNumber) {
+		// 3자리 수인지 검증
+		if (userGuessNumber.length() != 3) {
+			throw new IllegalArgumentException();
 		}
 
-		return isValidate;
+		// 1~9 사이의 숫자인지 검증
+		if (userGuessNumber.contains("0")) {
+			throw new IllegalArgumentException();
+		}
+
+		//숫자인지 검증
+		if (!userGuessNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
+			throw new IllegalArgumentException();
+		}
+
+		//서로 다른 수로 이루어졌는지 검증
+		Set<Character> digitSet = new HashSet<>();
+		for (char digit : userGuessNumber.toCharArray()) {
+			digitSet.add(digit);
+		}
+
+		if (digitSet.size() != 3) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public static int calculateStrikeCount(String randomNumber, String userGuessNumber) {
@@ -108,15 +104,13 @@ public class Application {
 
 	public static void proceedGame() {
 		String randomNumber = generateRandomNumber();
-		System.out.println("randomNumber = " + randomNumber);
+		//System.out.println("randomNumber = " + randomNumber);
 		String userGuessNumber = "";
 
 		while (!randomNumber.equals(userGuessNumber)) {
 			userGuessNumber = getUserGuessNumber();
 
-			if (!validateUserGuessNumber(userGuessNumber)) {
-				return;
-			}
+			validateUserGuessNumber(userGuessNumber);
 
 			printHint(randomNumber, userGuessNumber);
 		}
@@ -134,6 +128,6 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		//TODO: 숫자 야구 게임 구현
+
 	}
 }
