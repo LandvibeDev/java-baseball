@@ -1,5 +1,8 @@
 package baseball;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -23,6 +26,33 @@ public class Application {
 		System.out.print("숫자를 입력해주세요 : ");
 		String userGuessNumber = Console.readLine();
 		return userGuessNumber;
+	}
+
+	public static void validateUserGuessNumber(String userGuessNumber) {
+		try {
+			// 3자리 수인지 검증
+			if (userGuessNumber.length() != 3) {
+				throw new IllegalArgumentException();
+			}
+
+			//숫자인지 검증
+			if (!userGuessNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
+				throw new IllegalArgumentException();
+			}
+
+			//서로 다른 수로 이루어졌는지 검증
+			Set<Character> digitSet = new HashSet<>();
+			for (char digit : userGuessNumber.toCharArray()) {
+				digitSet.add(digit);
+			}
+
+			if (digitSet.size() != 3) {
+				throw new IllegalArgumentException();
+			}
+
+		} catch (IllegalArgumentException e) {
+			System.err.println("올바르지 않은 입력으로 인해 프로그램을 종료합니다.");
+		}
 	}
 
 	public static void main(String[] args) {
