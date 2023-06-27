@@ -86,7 +86,6 @@ public class Application {
 	}
 
 	public static void printHint(String randomNumber, String userGuessNumber) {
-
 		int strikeCount = calculateStrikeCount(randomNumber, userGuessNumber);
 		int ballCount = calculateBallCount(randomNumber, userGuessNumber);
 
@@ -107,8 +106,25 @@ public class Application {
 		System.out.println(hint);
 	}
 
+	public static void proceedGame() {
+		String randomNumber = generateRandomNumber();
+		System.out.println("randomNumber = " + randomNumber);
+		String userGuessNumber = "";
+
+		while (!randomNumber.equals(userGuessNumber)) {
+			userGuessNumber = getUserGuessNumber();
+
+			if (!validateUserGuessNumber(userGuessNumber)) {
+				return;
+			}
+
+			printHint(randomNumber, userGuessNumber);
+		}
+
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+	}
+
 	public static void main(String[] args) {
 		//TODO: 숫자 야구 게임 구현
-
 	}
 }
