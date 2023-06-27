@@ -127,7 +127,16 @@ public class Application {
 		return true;
 	}
 
-	public static void main(String[] args) {
+	public static void startGame() {
+		while (true) {
+			proceedGame();
+			if (!repeatGame()) {
+				return;
+			}
+		}
+	}
 
+	public static void main(String[] args) {
+		startGame();
 	}
 }
