@@ -23,7 +23,8 @@ public class Application {
 	}
 
 	public static String getUserGuessNumber() {
-		System.out.print("숫자를 입력해주세요 : ");
+
+		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE.getMessage());
 		String userGuessNumber = Console.readLine();
 		return userGuessNumber;
 	}
@@ -88,15 +89,15 @@ public class Application {
 		StringBuilder hint = new StringBuilder();
 
 		if (ballCount != 0) {
-			hint.append(ballCount).append("볼 ");
+			hint.append(ballCount).append(Message.BALL_MESSAGE.getMessage());
 		}
 
 		if (strikeCount != 0) {
-			hint.append(strikeCount).append("스트라이크");
+			hint.append(strikeCount).append(Message.STRIKE_MESSAGE.getMessage());
 		}
 
 		if (ballCount == 0 && strikeCount == 0) {
-			hint.append("낫싱");
+			hint.append(Message.NOTHING_MESSAGE.getMessage());
 		}
 
 		System.out.println(hint);
@@ -115,11 +116,11 @@ public class Application {
 			printHint(randomNumber, userGuessNumber);
 		}
 
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		System.out.println(Message.ALL_CORRECT_MESSAGE.getMessage());
 	}
 
 	public static boolean repeatGame() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		System.out.println(Message.REPEAT_MESSAGE.getMessage());
 		String isRepeat = Console.readLine();
 		if (isRepeat.equals("2")) {
 			return false;
