@@ -82,6 +82,7 @@ public class Application {
 	}
 
 	public static void printHint(String randomNumber, String userGuessNumber) {
+
 		int strikeCount = calculateStrikeCount(randomNumber, userGuessNumber);
 		int ballCount = calculateBallCount(randomNumber, userGuessNumber);
 
@@ -95,10 +96,15 @@ public class Application {
 			hint.append(strikeCount).append("스트라이크");
 		}
 
+		if (ballCount == 0 && strikeCount == 0) {
+			hint.append("낫싱");
+		}
+
 		System.out.println(hint);
 	}
 
 	public static void main(String[] args) {
 		//TODO: 숫자 야구 게임 구현
+
 	}
 }
