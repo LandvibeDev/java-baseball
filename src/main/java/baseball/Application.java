@@ -28,7 +28,8 @@ public class Application {
 		return userGuessNumber;
 	}
 
-	public static void validateUserGuessNumber(String userGuessNumber) {
+	public static boolean validateUserGuessNumber(String userGuessNumber) {
+		boolean isValidate = true;
 		try {
 			// 3자리 수인지 검증
 			if (userGuessNumber.length() != 3) {
@@ -51,8 +52,11 @@ public class Application {
 			}
 
 		} catch (IllegalArgumentException e) {
+			isValidate = false;
 			System.err.println("올바르지 않은 입력으로 인해 프로그램을 종료합니다.");
 		}
+
+		return isValidate;
 	}
 
 	public static int calculateStrikeCount(String randomNumber, String userGuessNumber) {
