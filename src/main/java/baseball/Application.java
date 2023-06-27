@@ -55,7 +55,20 @@ public class Application {
 		}
 	}
 
+	public static int calculateStrikeCount(String randomNumber, String userGuessNumber) {
+		int strikeCount = 0;
+
+		for (int numberIndex = 0; numberIndex < 3; numberIndex++) {
+			if (randomNumber.charAt(numberIndex) == userGuessNumber.charAt(numberIndex)) {
+				strikeCount++;
+			}
+		}
+
+		return strikeCount;
+	}
+
 	public static void main(String[] args) {
 		//TODO: 숫자 야구 게임 구현
+
 	}
 }
