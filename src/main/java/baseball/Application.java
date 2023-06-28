@@ -43,6 +43,9 @@ public class Application {
 
 		Set<Character> digitSet = new HashSet<>();
 		for (char digit : userGuessNumber.toCharArray()) {
+			if (!Character.isDigit(digit)) {
+				throw new IllegalArgumentException();
+			}
 			digitSet.add(digit);
 		}
 
@@ -106,7 +109,7 @@ public class Application {
 			validateUserGuessNumber(userGuessNumber);
 			printHint(randomNumber, userGuessNumber);
 
-			if(randomNumber.equals(userGuessNumber)){
+			if (randomNumber.equals(userGuessNumber)) {
 				break;
 			}
 		}
