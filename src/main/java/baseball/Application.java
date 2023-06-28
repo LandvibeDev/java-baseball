@@ -26,7 +26,11 @@ public class Application {
             if(!(number.charAt(i) > '0' && number.charAt(i) <= '9')) throw new IllegalArgumentException(); //숫자가 아닌지
         }
         if(number.length() != 3)throw new IllegalArgumentException(); // 길이가 다른지
-
+        for(int i = 0; i < number.length()-1; i++){
+            for(int j = i+1; j < number.length(); j++){
+                if(number.charAt(i) == number.charAt(j))throw new IllegalArgumentException();
+            }
+        }
     }
     public static int countStrike(String random_num, String input_num){
         int count = 0;
