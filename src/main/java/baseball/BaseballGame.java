@@ -6,6 +6,12 @@ public class BaseballGame {
     int[] randomNumbers = new int[3];
     int[] inputNumbers = new int[3];
 
+    public void start() {
+        getRandomNumbers();
+        playGame();
+        goOrStop();
+    }
+
     private void getRandomNumbers() {
         Random random = new Random();
         randomNumbers = random.makeRandomNumbers();
@@ -29,6 +35,13 @@ public class BaseballGame {
             if (getResult(strike, ball)) {
                 break;
             }
+        }
+    }
+
+    private void goOrStop() {
+        String input = Console.readLine();
+        if (input.contains("1")) {
+            start();
         }
     }
 
