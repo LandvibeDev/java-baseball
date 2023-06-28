@@ -38,7 +38,7 @@ public class Application {
 			throw new IllegalArgumentException();
 		}
 
-		if (!userGuessNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
+		if (!userGuessNumber.matches(RegexPattern.IS_NUMBER.getRegexPattern())) {
 			throw new IllegalArgumentException();
 		}
 
