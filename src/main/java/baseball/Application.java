@@ -23,29 +23,24 @@ public class Application {
 	}
 
 	public static String getUserGuessNumber() {
-
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE.getMessage());
 		String userGuessNumber = Console.readLine();
 		return userGuessNumber;
 	}
 
 	public static void validateUserGuessNumber(String userGuessNumber) {
-		// 3자리 수인지 검증
 		if (userGuessNumber.length() != 3) {
 			throw new IllegalArgumentException();
 		}
 
-		// 1~9 사이의 숫자인지 검증
 		if (userGuessNumber.contains("0")) {
 			throw new IllegalArgumentException();
 		}
 
-		//숫자인지 검증
 		if (!userGuessNumber.matches("[+-]?\\d*(\\.\\d+)?")) {
 			throw new IllegalArgumentException();
 		}
 
-		//서로 다른 수로 이루어졌는지 검증
 		Set<Character> digitSet = new HashSet<>();
 		for (char digit : userGuessNumber.toCharArray()) {
 			digitSet.add(digit);
@@ -105,7 +100,6 @@ public class Application {
 
 	public static void proceedGame() {
 		String randomNumber = generateRandomNumber();
-		//System.out.println("randomNumber = " + randomNumber);
 		String userGuessNumber = "";
 
 		while (!randomNumber.equals(userGuessNumber)) {
