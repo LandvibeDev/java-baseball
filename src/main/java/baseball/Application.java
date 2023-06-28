@@ -85,6 +85,13 @@ public class Application {
         if(num.equals("1")) return true;
         return false;
     }
+    public static void game(){
+        while(true){
+            startGame();
+            if(!repeatGame())return;
+        }
+    }
+
 
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
