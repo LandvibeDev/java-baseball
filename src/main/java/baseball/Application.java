@@ -71,11 +71,11 @@ public class Application {
             strike = countStrike(randNum, inputNum);
             ball = countBall(randNum, inputNum);
             String result = setStr(strike, ball);
+            System.out.println(result);
             if (strike == 3) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 return;
             }
-            System.out.println(result);
         }
     }
     public static boolean repeatGame(){
