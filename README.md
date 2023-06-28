@@ -127,3 +127,13 @@
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 - 프로그램 구현을 완료했을 때 `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
+
+
+
+### 기능 목록
+
+1. 랜덤 숫자 생성
+2. player input 생성 // input 이 비정상적일 경우 IllegalArgumentException
+3. player input 과 answer(random number 비교)
+4. 결과 출력
+5. 계속 반복? 끝내기
