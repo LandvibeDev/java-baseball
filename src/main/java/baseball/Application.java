@@ -28,7 +28,22 @@ public class Application {
         if(number.length() != 3)throw new IllegalArgumentException(); // 길이가 다른지
 
     }
-
+    public static int countStrike(String random_num, String input_num){
+        int count = 0;
+        for(int i = 0; i < 3; i++){
+            if(random_num.charAt(i) == input_num.charAt(i)) count++;
+        }
+        return count;
+    }
+    public static int countBall(String random_num, String input_num){
+        int count = 0;
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++){
+                if(random_num.charAt(i) == input_num.charAt(j) && i != j) count++;
+            }
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
