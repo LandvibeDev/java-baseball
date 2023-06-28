@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
 
-	public static String generateRandomNumber() {
+	public static int generateRandomNumber() {
 		StringBuilder randomNumber = new StringBuilder();
 
 		while (randomNumber.length() < Number.NUMBER_OF_DIGITS.getNumber()) {
@@ -20,13 +20,13 @@ public class Application {
 			}
 		}
 
-		return randomNumber.toString();
+		return Integer.parseInt(randomNumber.toString());
 	}
 
-	public static String getUserGuessNumber() {
+	public static int getUserGuessNumber() {
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE.getMessage());
 		String userGuessNumber = Console.readLine();
-		return userGuessNumber;
+		return Integer.parseInt(userGuessNumber);
 	}
 
 	public static void validateUserGuessNumber(String userGuessNumber) {
@@ -105,10 +105,10 @@ public class Application {
 	}
 
 	public static void proceedGame() {
-		String randomNumber = generateRandomNumber();
+		String randomNumber = Integer.toString(generateRandomNumber());
 
 		while (true) {
-			String userGuessNumber = getUserGuessNumber();
+			String userGuessNumber = Integer.toString(getUserGuessNumber());
 			validateUserGuessNumber(userGuessNumber);
 			printHint(randomNumber, userGuessNumber);
 
