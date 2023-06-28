@@ -44,6 +44,22 @@ public class Application {
         }
         return count;
     }
+    public static String setStr(int strike, int ball){
+        String str;
+        if(strike != 0 && ball != 0){
+            str = ball + "볼 " + strike + "스트라이크";
+            return str;
+        }
+        else if(strike == 0 && ball != 0){
+            str = ball +"볼 ";
+            return str;
+        }
+        else if(strike != 0 && ball == 0){
+            str = strike + "스트라이크 ";
+            return str;
+        }
+        return "낫싱";
+    }
 
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
