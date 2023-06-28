@@ -60,6 +60,25 @@ public class Application {
         }
         return "낫싱";
     }
+    public static void startGame(){
+        int strike = 0;
+        int ball = 0;
+        String randNum = createRandomBall();
+        String inputNum = "";
+        System.out.println(randNum);
+        while(!randNum.equals(inputNum)) {
+            inputNum = input();
+            checkException(inputNum);
+            strike = countStrike(randNum, inputNum);
+            ball = countBall(randNum, inputNum);
+            String result = setStr(strike, ball);
+            if (strike == 3) {
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                return;
+            }
+            System.out.println(result);
+        }
+    }
 
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
