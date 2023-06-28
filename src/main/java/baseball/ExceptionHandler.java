@@ -18,9 +18,9 @@ public class ExceptionHandler {
 
     private void wrongInputCheck(String input) {
         Set<Integer> set = new HashSet<>();
-        for (int i =0; i<3; i++) {
-            set.add(input.charAt(i)-'0');
-            if (input.charAt(i) -'0' <= 0 || input.charAt(i) - '0' > 9) {
+        for (int i = 0; i < 3; i++) {
+            set.add(input.charAt(i) - '0');
+            if (input.charAt(i) - '0' <= 0 || input.charAt(i) - '0' > 9) {
                 throw new IllegalArgumentException("1-9 숫자만 가능합니다");
             }
         }
