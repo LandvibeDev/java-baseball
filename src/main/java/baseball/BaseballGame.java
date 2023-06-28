@@ -21,6 +21,17 @@ public class BaseballGame {
         }
     }
 
+    private void playGame() {
+        while (true) {
+            getInputNumbers();
+            int strike = checkStrike();
+            int ball = checkBall();
+            if (getResult(strike, ball)) {
+                break;
+            }
+        }
+    }
+
     private int checkStrike() {
         int strike = 0;
         for (int i=0; i<3; i++) {
