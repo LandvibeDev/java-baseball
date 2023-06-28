@@ -65,7 +65,6 @@ public class Application {
         int ball = 0;
         String randNum = createRandomBall();
         String inputNum = "";
-        System.out.println(randNum);
         while(!randNum.equals(inputNum)) {
             inputNum = input();
             checkException(inputNum);
