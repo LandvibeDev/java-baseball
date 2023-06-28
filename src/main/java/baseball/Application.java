@@ -100,14 +100,15 @@ public class Application {
 
 	public static void proceedGame() {
 		String randomNumber = generateRandomNumber();
-		String userGuessNumber = "";
 
-		while (!randomNumber.equals(userGuessNumber)) {
-			userGuessNumber = getUserGuessNumber();
-
+		while (true) {
+			String userGuessNumber = getUserGuessNumber();
 			validateUserGuessNumber(userGuessNumber);
-
 			printHint(randomNumber, userGuessNumber);
+
+			if(randomNumber.equals(userGuessNumber)){
+				break;
+			}
 		}
 
 		System.out.println(Message.ALL_CORRECT_MESSAGE.getMessage());
