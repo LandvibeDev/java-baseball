@@ -79,6 +79,12 @@ public class Application {
             System.out.println(result);
         }
     }
+    public static boolean repeatGame(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String num = Console.readLine();
+        if(num.equals("1")) return true;
+        return false;
+    }
 
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
