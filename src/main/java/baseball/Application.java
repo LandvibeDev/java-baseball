@@ -1,6 +1,8 @@
 package baseball;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -55,17 +57,28 @@ public class Application {
 		}
 	}
 
-	public static int calculateStrikeCount(String randomNumber, String userGuessNumber) {
+	public static Queue<Integer> calculateStrikeBallCount(String randomNumber, String userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.getNumber();
+		int ballCount = Number.INIT_BALL_COUNT.getNumber();
+
+		Queue<Integer> strikeBallQueue = new LinkedList<>();
 
 		for (int numberIndex = Number.ZERO.getNumber();
 			 numberIndex < Number.NUMBER_OF_DIGITS.getNumber(); numberIndex++) {
 			if (randomNumber.charAt(numberIndex) == userGuessNumber.charAt(numberIndex)) {
 				strikeCount++;
 			}
+
+			String guessDigit = String.valueOf(userGuessNumber.charAt(numberIndex));
+
+			if (randomNumber.contains(guessDigit) && randomNumber.indexOf(guessDigit) != numberIndex) {
+				ballCount++;
+			}
 		}
 
-		return strikeCount;
+		strikeBallQueue.add(strikeCount);
+		strikeBallQueue.add(ballCount);
+		return strikeBallQueue;
 	}
 
 	public static int calculateBallCount(String randomNumber, String userGuessNumber) {
@@ -83,9 +96,7 @@ public class Application {
 		return ballCount;
 	}
 
-	public static void printHint(String randomNumber, String userGuessNumber) {
-		int strikeCount = calculateStrikeCount(randomNumber, userGuessNumber);
-		int ballCount = calculateBallCount(randomNumber, userGuessNumber);
+	public static void printHint(int strikeCount, int ballCount) {
 
 		StringBuilder hint = new StringBuilder();
 
@@ -110,7 +121,10 @@ public class Application {
 		while (true) {
 			String userGuessNumber = Integer.toString(getUserGuessNumber());
 			validateUserGuessNumber(userGuessNumber);
-			printHint(randomNumber, userGuessNumber);
+			Queue<Integer> strikeBallQueue = calculateStrikeBallCount(randomNumber, userGuessNumber);
+			int strikeCount = strikeBallQueue.poll();
+			int ballCount = strikeBallQueue.poll();
+			printHint(strikeCount, ballCount);
 
 			if (randomNumber.equals(userGuessNumber)) {
 				break;
