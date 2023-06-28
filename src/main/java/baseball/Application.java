@@ -125,9 +125,10 @@ public class Application {
 	public static void startGame() {
 		while (true) {
 			proceedGame();
-			if (!repeatGame()) {
-				return;
+			if (repeatGame()) {
+				continue;
 			}
+			break;
 		}
 	}
 
