@@ -61,11 +61,11 @@ public class NumberManager {
 	public Score calculateScore(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.get();
 		int ballCount = Number.INIT_BALL_COUNT.get();
+		validateThreeDigitNumber(randomNumber, userGuessNumber);
 		String randomNumberString = String.valueOf(randomNumber.getThreeDigitNumber());
 		String userGuessNumberString = String.valueOf(userGuessNumber.getThreeDigitNumber());
 
-		for (int numberIndex = Number.ZERO.get();
-			 numberIndex < Number.NUMBER_OF_DIGITS.get(); numberIndex++) {
+		for (int numberIndex = Number.ZERO.get(); numberIndex < Number.NUMBER_OF_DIGITS.get(); numberIndex++) {
 			if (randomNumberString.charAt(numberIndex) == userGuessNumberString.charAt(numberIndex)) {
 				strikeCount++;
 			}
@@ -79,5 +79,11 @@ public class NumberManager {
 
 		Score score = new Score(strikeCount, ballCount);
 		return score;
+	}
+
+	public void validateThreeDigitNumber(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
+		if (randomNumber == null || userGuessNumber == null) {
+			throw new NullPointerException();
+		}
 	}
 }
