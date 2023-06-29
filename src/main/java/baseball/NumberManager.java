@@ -25,43 +25,15 @@ public class NumberManager {
 	public ThreeDigitNumber getUserGuessNumber() {
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE);
 		String userInput = Console.readLine();
-		validateUserInput(userInput);
+		Validator.validateUserInput(userInput);
 		ThreeDigitNumber userGuessNumber = new ThreeDigitNumber(Integer.parseInt(userInput));
 		return userGuessNumber;
-	}
-
-	public void validateUserInput(String userInput) {
-		if (userInput.length() != Number.NUMBER_OF_DIGITS.get()) {
-			throw new IllegalArgumentException();
-		}
-
-		if (userInput.contains(Integer.toString(Number.ZERO.get()))) {
-			throw new IllegalArgumentException();
-		}
-
-		if (!userInput.matches(RegexPattern.IS_NUMBER.getRegexPattern())) {
-			throw new IllegalArgumentException();
-		}
-
-		for (char digit : userInput.toCharArray()) {
-			if (!Character.isDigit(digit)) {
-				throw new IllegalArgumentException();
-			}
-		}
-
-		int userInputNumber = Integer.parseInt(userInput);
-		int hundredDigit = userInputNumber / 100;
-		int tenDigit = (userInputNumber % 100) / 10;
-		int oneDigit = userInputNumber % 10;
-		if (hundredDigit == tenDigit || tenDigit == oneDigit || oneDigit == hundredDigit) {
-			throw new IllegalArgumentException();
-		}
 	}
 
 	public Score calculateScore(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.get();
 		int ballCount = Number.INIT_BALL_COUNT.get();
-		validateThreeDigitNumber(randomNumber, userGuessNumber);
+		Validator.validateThreeDigitNumber(randomNumber, userGuessNumber);
 		String randomNumberString = String.valueOf(randomNumber.getThreeDigitNumber());
 		String userGuessNumberString = String.valueOf(userGuessNumber.getThreeDigitNumber());
 
@@ -81,9 +53,4 @@ public class NumberManager {
 		return score;
 	}
 
-	public void validateThreeDigitNumber(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
-		if (randomNumber == null || userGuessNumber == null) {
-			throw new NullPointerException();
-		}
-	}
 }
