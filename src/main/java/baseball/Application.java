@@ -52,7 +52,7 @@ public class Application {
         }
         return count;
     }
-    public static String setStr(int strike, int ball){
+    public static String printHint(int strike, int ball){
         String str;
         if(strike != 0 && ball != 0){
             str = ball + "볼 " + strike + "스트라이크";
@@ -78,7 +78,7 @@ public class Application {
             checkException(inputNum);
             strike = countStrike(randNum, inputNum);
             ball = countBall(randNum, inputNum);
-            String result = setStr(strike, ball);
+            String result = printHint(strike, ball);
             System.out.println(result);
             if (strike == Numbers.LENGTH.getValue()) {
                 System.out.println("Numbers.LENGTH.getValue()개의 숫자를 모두 맞히셨습니다! 게임 종료");
