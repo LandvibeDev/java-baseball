@@ -25,7 +25,7 @@ public class NumberManager {
 	}
 
 	public int getUserGuessNumber() {
-		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE.getMessage());
+		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE);
 		String userGuessNumber = Console.readLine();
 		return Integer.parseInt(userGuessNumber);
 	}

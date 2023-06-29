@@ -38,11 +38,11 @@ public class BaseballGame {
 			}
 		}
 
-		System.out.println(Message.ALL_CORRECT_MESSAGE.getMessage());
+		System.out.println(Message.ALL_CORRECT_MESSAGE);
 	}
 
 	public boolean repeatGame() {
-		System.out.println(Message.REPEAT_MESSAGE.getMessage());
+		System.out.println(Message.REPEAT_MESSAGE);
 		String isRepeat = Console.readLine();
 		if (isRepeat.equals(Integer.toString(Number.IS_REPEAT.getNumber()))) {
 			return false;
@@ -54,15 +54,15 @@ public class BaseballGame {
 		StringBuilder hint = new StringBuilder();
 
 		if (ballCount != Number.ZERO.getNumber()) {
-			hint.append(ballCount).append(Message.BALL_MESSAGE.getMessage());
+			hint.append(ballCount).append(Message.BALL_MESSAGE);
 		}
 
 		if (strikeCount != Number.ZERO.getNumber()) {
-			hint.append(strikeCount).append(Message.STRIKE_MESSAGE.getMessage());
+			hint.append(strikeCount).append(Message.STRIKE_MESSAGE);
 		}
 
 		if (ballCount == Number.ZERO.getNumber() && strikeCount == Number.ZERO.getNumber()) {
-			hint.append(Message.NOTHING_MESSAGE.getMessage());
+			hint.append(Message.NOTHING_MESSAGE);
 		}
 
 		System.out.println(hint);
