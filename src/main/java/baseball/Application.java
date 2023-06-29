@@ -17,29 +17,18 @@ public class Application {
         String result="";
         int stop=1;
         while (stop == 1) {
-            /*
-            try {
-                List<ResultEnum> enumList = baseballService.iter(randomNumber);
-                result = baseballService.getResult(enumList);
-                System.out.println(result);
-                if (result.length() > 10) {
-                    stop = Integer.parseInt(Console.readLine());
-                    randomNumber = baseballService.makeRandomNumber();
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("프로그램을 종료합니다.");
-                break;
-            }
-
-             */
             List<ResultEnum> enumList = baseballService.iter(randomNumber);
             result = baseballService.getResult(enumList);
             System.out.println(result);
             if (result.length() > 10) {
                 stop = Integer.parseInt(Console.readLine());
+                if(stop==2){
+                    break;
+                }
                 randomNumber = baseballService.makeRandomNumber();
             }
         }
+        System.out.println("게임 종료");
 
     }
 }

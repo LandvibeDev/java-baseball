@@ -2,24 +2,46 @@ package baseball;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-
-import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class BaseballService {
     private boolean [] vis=new boolean[10];
+/*
     public String makeRandomNumber(){
         String randomNumber="";
         List<Integer> arr=Randoms.pickUniqueNumbersInRange(1, 9, 3);
         for(int i=0;i<3;i++) {
+            System.out.println(i+": "+arr.get(i));
             vis[arr.get(i)] = true;
             randomNumber += arr.get(i);
         }
        System.out.println(randomNumber);
         return randomNumber;
     }
+
+여기서 왜 런타임인지 생각해보기
+ */
+    public String makeRandomNumber(){
+        boolean[] duplicate=new boolean[10];
+        String result="";
+        for (int i = 0; i < 3; i++) {
+            int num;
+            do {
+                num = Randoms.pickNumberInRange(1, 9);
+            } while (duplicate[num]);
+            duplicate[num] = true;
+            vis[num]=true;
+            result += num;
+        }
+        System.out.println(result);
+        return result;
+
+    }
+
+
+
     public String getResult(List<ResultEnum> enumList){
         List<ResultEnum> enums=enumList;
         int strike=0;
@@ -35,7 +57,7 @@ public class BaseballService {
             }
         }
         if(strike==3){
-            return "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+            return "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
         }else if(ball==0){
             return strike+"스트라이크";
         }else if(strike==0){
