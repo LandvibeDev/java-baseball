@@ -44,7 +44,10 @@ public class Validator {
 			throw new IllegalArgumentException();
 		}
 
-		if (!userInput.equals("1") || !userInput.equals("2")) {
+		String one = String.valueOf(Number.IS_REPEAT);
+		String two = String.valueOf(Number.IS_NOT_REPEAT);
+
+		if (!userInput.equals(one) || !userInput.equals(two)) {
 			throw new IllegalArgumentException();
 		}
 	}
