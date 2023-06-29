@@ -1,15 +1,24 @@
 package baseball;
 
+import java.util.ArrayList;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballGame {
-    int[] randomNumbers = new int[3];
-    int[] inputNumbers = new int[3];
+    static int start = 1;
+    static int end = 9;
+    static int number = 3;
+
+    int strike = 0;
+    int ball = 0;
+
+    ArrayList<Integer> randomNumbers = new ArrayList<>();
+    ArrayList<Integer> inputNumbers = new ArrayList<>();
 
     public void start() {
         getRandomNumbers();
         playGame();
-        goOrStop();
+        restartOrExit();
     }
 
     private void getRandomNumbers() {
@@ -18,60 +27,62 @@ public class BaseballGame {
     }
 
     private void getInputNumbers() {
-        ExceptionHandler exceptionHandler = new ExceptionHandler();
-        System.out.print("숫자를 입력해주세요 : ");
-        String input = Console.readLine();
-        exceptionHandler.handleException(input);
-        for (int i = 0; i < 3; i++) {
-            inputNumbers[i] = input.charAt(i) - '0';
+        inputNumbers.clear();
+        System.out.println("숫자를 입력해주세요 :");
+        String inputString = Console.readLine();
+        Validation validation = new Validation(inputString);
+        validation.handleException();
+        for (int i = 0; i < number; i++) {
+            inputNumbers.add(inputString.charAt(i) - '0');
         }
     }
 
     private void playGame() {
         while (true) {
             getInputNumbers();
-            int strike = checkStrike();
-            int ball = checkBall();
-            if (getResult(strike, ball)) {
+            checkStrikeAndBall();
+            getResult();
+            if (isSuccess()) {
                 break;
             }
         }
     }
 
-    private void goOrStop() {
+    private void restartOrExit() {
         String input = Console.readLine();
-        if (input.contains("1")) {
+        if (input.equals(Constant.RESTART.value)) {
             start();
         }
     }
 
-    private int checkStrike() {
-        int strike = 0;
-        for (int i = 0; i < 3; i++) {
-            if (randomNumbers[i] == inputNumbers[i]) {
+    private void checkStrikeAndBall() {
+        strike = 0;
+        ball = 0;
+        for (int i = 0; i < number; i++) {
+            if (randomNumbers.get(i) == inputNumbers.get(i)) {
                 strike++;
-                inputNumbers[i] = -1;
+                inputNumbers.set(i, -1);
             }
-        }
-        return strike;
-    }
-
-    private int checkBall() {
-        int ball = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (randomNumbers[i] == inputNumbers[j]) {
+            for (int j = 0; j < number; j++) {
+                if (randomNumbers.get(i) == inputNumbers.get(j)) {
                     ball++;
                 }
             }
         }
-        return ball;
     }
 
-    private boolean getResult(int strike, int ball) {
+    private boolean isSuccess() {
+        if (strike == number) {
+            System.out.println(number + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+            return true;
+        }
+        return false;
+    }
+
+    private void getResult() {
         if (strike == 0 && ball == 0) {
             System.out.println("낫싱");
-            return false;
         }
         if (ball > 0) {
             System.out.print(ball + "볼 ");
@@ -81,12 +92,6 @@ public class BaseballGame {
         }
         if (strike > 0) {
             System.out.println(strike + "스트라이크");
-            if(strike == 3) {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-                System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-                return true;
-            }
         }
-        return false;
     }
 }
