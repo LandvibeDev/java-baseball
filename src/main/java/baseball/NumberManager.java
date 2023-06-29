@@ -26,7 +26,9 @@ public class NumberManager {
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE);
 		String userInput = Console.readLine();
 		Validator.validateUserInput(userInput);
-		ThreeDigitNumber userGuessNumber = new ThreeDigitNumber(Integer.parseInt(userInput));
+		int userInputNumber = Integer.parseInt(userInput);
+
+		ThreeDigitNumber userGuessNumber = new ThreeDigitNumber(userInputNumber);
 		return userGuessNumber;
 	}
 
