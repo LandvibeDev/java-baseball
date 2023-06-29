@@ -67,7 +67,7 @@ public class BaseballService {
         String input = Console.readLine();
         checkException(input);
         List<ResultEnum> enums = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < DIGITS; i++) {
             if (randomNumber.charAt(i) == input.charAt(i)) {
                 enums.add(ResultEnum.STRIKE);
             } else if (vis[input.charAt(i) - '0']) {
