@@ -1,80 +1,76 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class BaseballService {
-    private boolean[] vis=new boolean[10];//1~9까지 존재하는 숫자들을 true로 표시
-    private int[] table=new int[3];//3개의 랜덤 숫자
-
-    public int[] randomNumber(){
-        int [] arr=new int[3];
-        Random random=new Random();
-        boolean [] temp=new boolean[10];
-        for(int i=0;i<3;i++){
-            while(true){
-                int randomNumber = random.nextInt(9) + 1;
-                if(!temp[randomNumber]){
-                    temp[randomNumber]=true;
-                    arr[i]=randomNumber;
-                    break;
-                }
-            }
+    private boolean [] vis=new boolean[10];
+    public String makeRandomNumber(){
+        String randomNumber="";
+        List<Integer> arr=Randoms.pickUniqueNumbersInRange(1, 9, 3);
+        for(int i=0;i<3;i++) {
+            vis[arr.get(i)] = true;
+            randomNumber += arr.get(i);
         }
-        return arr;
+       System.out.println(randomNumber);
+        return randomNumber;
     }
-
-    public void init(){
-        for(int i=0;i<10;i++){
-            vis[i]=false;
-        }
-
-        table=randomNumber();
-    }
-    public List<ResultEnum> checkVis(String input){
-        List<ResultEnum> enumList=new ArrayList<>();
-        for(int i=0;i<3;i++){
-            vis[table[i]]=true;//맞고
-        }
-
-        for(int i=0;i<3;i++){
-            if(!vis[input.charAt(i)-'0']){// input 문자열의 길이가 0인 상태에서 input.charAt(i)를 실행하려고 하여 발생
-                //없는 경
-                continue;
-            }//일단 여기부터는 숫자가 겹치긴 한다는거지
-
-            if(input.charAt(i)-'0'== table[i]){
-                enumList.add(ResultEnum.STRIKE);
-                continue;
-            }
-            enumList.add(ResultEnum.BALL);
-        }
-
-        return enumList;
-    }
-    public String finalResult(List<ResultEnum> list){
-        if (list.isEmpty()){
-            return "낫싱";
-        }
+    public String getResult(List<ResultEnum> enumList){
+        List<ResultEnum> enums=enumList;
         int strike=0;
         int ball=0;
-        for(int i=0;i<list.size();i++){
-            if(list.get(i)==ResultEnum.STRIKE){
+        if(enums.isEmpty()){
+            return "낫싱";
+        }
+        for (ResultEnum anEnum : enums) {
+            if(anEnum==ResultEnum.STRIKE){
                 strike++;
-            }else if(list.get(i)==ResultEnum.BALL){
+            }else if(anEnum==ResultEnum.BALL){
                 ball++;
             }
         }
-        if(strike==3) {
-            return "3스트라이크.\n3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요\n";
+        if(strike==3){
+            return "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
         }else if(ball==0){
             return strike+"스트라이크";
         }else if(strike==0){
             return ball+"볼";
-        }else{
-            return ball+"볼 "+strike+"스트라이크";
+        }
+        return ball+"볼 "+strike+"스트라이크";
+    }
+    public List<ResultEnum> iter(String randomNumber) throws IllegalArgumentException{
+        System.out.println("숫자를 입력해주세요 : ");
+        String input="";
+        input=Console.readLine();
+        checkException(input);
+        List<ResultEnum> enums=new ArrayList<>();
+        for(int i=0;i<3;i++){
+            if(randomNumber.charAt(i)==input.charAt(i)){
+                enums.add(ResultEnum.STRIKE);
+            }else if(vis[input.charAt(i)-'0']){
+                enums.add(ResultEnum.BALL);
+            }
+        }
+        return enums;
+    }
+    public void checkException(String input) throws IllegalArgumentException{
+        boolean[] used=new boolean[10];
+        if(input.length()!=3){
+            throw new IllegalArgumentException("종료");
+        }
+        for(int i=0;i<3;i++){
+            if(input.charAt(i)-'0'<1||input.charAt(i)-'0'>9){
+                throw new IllegalArgumentException("종료");
+            }
+            if(used[input.charAt(i)-'0']){
+                throw new IllegalArgumentException();
+            }
+            used[input.charAt(i)-'0']=true;
         }
     }
-
 }

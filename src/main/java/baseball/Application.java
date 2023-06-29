@@ -1,51 +1,45 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Application {
 
-    private static  BaseballService baseballService=new BaseballService();
 
-    public static void main(String[] args)  {
+
+    public static void main(String[] args) throws IllegalArgumentException {
         //TODO: 숫자 야구 게임 구현
-        Scanner scan = new Scanner(System.in);
-        String  input="000";
-        baseballService.init();
-        while(true){
-            System.out.println("숫자를 입력해주세요 : ");
-
-            try{//이거의 인덴트를 어떻게 줄여볼까..? 그냥 try없이 해도 되는거 아닌가
-                input = scan.nextLine();
-                if(input.length()!=3){
-                    throw new IllegalAccessException("종료");
+        BaseballService baseballService=new BaseballService();
+        String randomNumber= baseballService.makeRandomNumber();
+        String result="";
+        int stop=1;
+        while (stop == 1) {
+            /*
+            try {
+                List<ResultEnum> enumList = baseballService.iter(randomNumber);
+                result = baseballService.getResult(enumList);
+                System.out.println(result);
+                if (result.length() > 10) {
+                    stop = Integer.parseInt(Console.readLine());
+                    randomNumber = baseballService.makeRandomNumber();
                 }
-                for(int i=0;i<3;i++){
-                    if(input.charAt(i)-'0'>10||input.charAt(i)-'0'<0){
-                      throw  new IllegalAccessException("종료");
-                    }
-                }
-            }catch (Exception e){
-                System.out.println(e);
+            } catch (IllegalArgumentException e) {
+                System.out.println("프로그램을 종료합니다.");
                 break;
             }
 
-
-            List<ResultEnum> enumList =baseballService.checkVis(input);
-            String output=baseballService.finalResult(enumList);
-            System.out.println(output);
-            if(output.length()>10){
-                int a=scan.nextInt();;
-                scan.nextLine();
-                if(a==1){
-                    baseballService.init();;
-                }else if(a==2){
-                    break;
-                }
-
+             */
+            List<ResultEnum> enumList = baseballService.iter(randomNumber);
+            result = baseballService.getResult(enumList);
+            System.out.println(result);
+            if (result.length() > 10) {
+                stop = Integer.parseInt(Console.readLine());
+                randomNumber = baseballService.makeRandomNumber();
             }
-
         }
-    }
 
+    }
 }
