@@ -9,20 +9,19 @@ import java.util.Scanner;
 public class Application {
 
 
-
     public static void main(String[] args) throws IllegalArgumentException {
         //TODO: 숫자 야구 게임 구현
-        BaseballService baseballService=new BaseballService();
-        String randomNumber= baseballService.makeRandomNumber();
-        String result="";
-        int stop=1;
-        while (stop == 1) {
+        BaseballService baseballService = new BaseballService();
+        String randomNumber = baseballService.makeRandomNumber();
+        while (true) {
             List<ResultEnum> enumList = baseballService.iter(randomNumber);
-            result = baseballService.getResult(enumList);
-            System.out.println(result);
-            if (result.length() > 10) {
-                stop = Integer.parseInt(Console.readLine());
-                if(stop==2){
+            ResultDto result = baseballService.getResult(enumList);
+            String finalResult = baseballService.finalResult(result);
+            System.out.println(finalResult);
+            if (finalResult.length() > 10) {
+                String input = Console.readLine();
+                int stop = Integer.parseInt(input);
+                if (stop == 2) {
                     break;
                 }
                 randomNumber = baseballService.makeRandomNumber();
