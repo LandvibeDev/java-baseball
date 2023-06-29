@@ -12,11 +12,11 @@ public class NumberManager {
 	public int generateRandomNumber() {
 		StringBuilder randomNumber = new StringBuilder();
 
-		while (randomNumber.length() < Number.NUMBER_OF_DIGITS.getNumber()) {
+		while (randomNumber.length() < Number.NUMBER_OF_DIGITS.get()) {
 			String randomDigit = String.valueOf(
-				Randoms.pickNumberInRange(Number.START_NUMBER_RANGE.getNumber(), Number.END_NUMBER_RANGE.getNumber()));
+				Randoms.pickNumberInRange(Number.START_NUMBER_RANGE.get(), Number.END_NUMBER_RANGE.get()));
 
-			if (randomNumber.indexOf(randomDigit) == Number.IS_CONTAIN.getNumber()) {
+			if (randomNumber.indexOf(randomDigit) == Number.IS_CONTAIN.get()) {
 				randomNumber.append(randomDigit);
 			}
 		}
@@ -31,11 +31,11 @@ public class NumberManager {
 	}
 
 	public void validateUserGuessNumber(String userGuessNumber) {
-		if (userGuessNumber.length() != Number.NUMBER_OF_DIGITS.getNumber()) {
+		if (userGuessNumber.length() != Number.NUMBER_OF_DIGITS.get()) {
 			throw new IllegalArgumentException();
 		}
 
-		if (userGuessNumber.contains(Integer.toString(Number.ZERO.getNumber()))) {
+		if (userGuessNumber.contains(Integer.toString(Number.ZERO.get()))) {
 			throw new IllegalArgumentException();
 		}
 
@@ -51,19 +51,19 @@ public class NumberManager {
 			digitSet.add(digit);
 		}
 
-		if (digitSet.size() != Number.NUMBER_OF_DIGITS.getNumber()) {
+		if (digitSet.size() != Number.NUMBER_OF_DIGITS.get()) {
 			throw new IllegalArgumentException();
 		}
 	}
 
 	public Queue<Integer> calculateStrikeBallCount(String randomNumber, String userGuessNumber) {
-		int strikeCount = Number.INIT_STRIKE_COUNT.getNumber();
-		int ballCount = Number.INIT_BALL_COUNT.getNumber();
+		int strikeCount = Number.INIT_STRIKE_COUNT.get();
+		int ballCount = Number.INIT_BALL_COUNT.get();
 
 		Queue<Integer> strikeBallQueue = new LinkedList<>();
 
-		for (int numberIndex = Number.ZERO.getNumber();
-			 numberIndex < Number.NUMBER_OF_DIGITS.getNumber(); numberIndex++) {
+		for (int numberIndex = Number.ZERO.get();
+			 numberIndex < Number.NUMBER_OF_DIGITS.get(); numberIndex++) {
 			if (randomNumber.charAt(numberIndex) == userGuessNumber.charAt(numberIndex)) {
 				strikeCount++;
 			}
