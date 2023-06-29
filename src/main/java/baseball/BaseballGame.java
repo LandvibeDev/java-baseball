@@ -49,7 +49,7 @@ public class BaseballGame {
 		return true;
 	}
 
-	public static void printHint(int strikeCount, int ballCount) {
+	public void printHint(int strikeCount, int ballCount) {
 		StringBuilder hint = new StringBuilder();
 
 		if (ballCount != Number.ZERO.get()) {
