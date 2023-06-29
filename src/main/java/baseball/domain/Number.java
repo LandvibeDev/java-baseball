@@ -1,15 +1,17 @@
 package baseball.domain;
 
 
-public class Answer {
+public class Number {
     private int first;
     private int second;
     private int third;
+    private Form form;
 
-    public Answer(int first, int second, int third) {
+    public Number(int first, int second, int third, Form form) {
         this.first = first;
         this.second = second;
         this.third = third;
+        this.form = form;
     }
 
     public int getFirst() {
@@ -22,5 +24,9 @@ public class Answer {
 
     public int getThird() {
         return third;
+    }
+
+    public Form getForm() {
+        return form;
     }
 }

@@ -1,18 +1,18 @@
 package baseball.repository;
 
-import baseball.domain.Answer;
+import baseball.domain.Number;
 
 public class AnswerRepositoryImpl implements AnswerRepository {
 
-    private Answer answer;
+    private Number answerNumber;
 
     @Override
-    public void save(Answer answer) {
-        this.answer = answer;
+    public void save(Number answerNumber) {
+        this.answerNumber = answerNumber;
     }
 
     @Override
-    public Answer getAnswer() {
-        return answer;
+    public Number getAnswer() {
+        return answerNumber;
     }
 }

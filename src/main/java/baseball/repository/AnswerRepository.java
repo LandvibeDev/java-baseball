@@ -1,9 +1,9 @@
 package baseball.repository;
 
-import baseball.domain.Answer;
+import baseball.domain.Number;
 
 public interface AnswerRepository {
 
-    void save(Answer answer);
-    Answer getAnswer();
+    void save(Number answerNumber);
+    Number getAnswer();
 }

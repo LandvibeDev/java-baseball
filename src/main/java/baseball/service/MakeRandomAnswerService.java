@@ -1,54 +1,38 @@
 package baseball.service;
 
-import baseball.domain.Answer;
-import baseball.policy.AnswerPolicy;
+import baseball.domain.Form;
+import baseball.domain.Number;
+import baseball.policy.CheckValidNumberPolicy;
 import baseball.repository.AnswerRepository;
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class MakeRandomAnswerService implements MakeAnswerService {
+public class MakeRandomAnswerService implements MakeNumberService {
 
     private final AnswerRepository answerRepository;
-    private final AnswerPolicy answerPolicy;
+    private final CheckValidNumberPolicy checkValidNumberPolicy;
+    private final SplitService splitService;
 
-    public MakeRandomAnswerService(AnswerRepository answerRepository, AnswerPolicy answerPolicy) {
+    public MakeRandomAnswerService(AnswerRepository answerRepository, CheckValidNumberPolicy checkValidNumberPolicy, SplitService splitService) {
         this.answerRepository = answerRepository;
-        this.answerPolicy = answerPolicy;
+        this.checkValidNumberPolicy = checkValidNumberPolicy;
+        this.splitService = splitService;
     }
 
     @Override
-    public Answer split(int number) {
-        int first;
-        int second;
-        int third;
-
-        third = number % 10;
-        number /= 10;
-
-        second = number % 10;
-        number /= 10;
-
-        first = number;
-
-        return new Answer(first, second, third);
-    }
-
-    @Override
-    public void makeAnswer() {
-        int number = Randoms.pickNumberInRange(100, 999);
-        Answer answer = split(number);
-
+    public void makeNumber(int number) throws IllegalArgumentException {
         while (true) {
-            if (answerPolicy.isValidAnswer(answer)) {
-                answerRepository.save(answer);
-                break;
-            }
             number = Randoms.pickNumberInRange(100, 999);
-            answer = split(number);
+            Number answerNumber = splitService.split(number, Form.ANSWER);
+
+            if (checkValidNumberPolicy.isValidNumber(answerNumber)) {
+                answerRepository.save(answerNumber);
+                return;
+            }
         }
     }
 
     @Override
-    public Answer findAnswer() {
+    public Number returnNumber() {
         return answerRepository.getAnswer();
     }
 }

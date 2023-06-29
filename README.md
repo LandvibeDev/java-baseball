@@ -133,7 +133,18 @@
 ### 기능 목록
 
 1. 랜덤 숫자 생성
+   1. SplitService 클래스로 숫자 쪼개기
+   2. CheckValidNumberPolicy 로 모두 다른 숫자이고, 1~9 범위의 숫자인지 확인
+   3. MakeAnswerService 를 통해 AnswerRepository 에 저장해서 보관
+
 2. player input 생성 // input 이 비정상적일 경우 IllegalArgumentException
-3. player input 과 answer(random number 비교)
-4. 결과 출력
-5. 계속 반복? 끝내기
+   1. Application 에서 input 숫자를 입력으로 받기
+   2. MakeInputService 를 통해
+      1. SplitService 클래스로 숫자 쪼개기, (쪼개면서 범위에 어긋난 숫자이면 throw IllegalArgumentException )
+      2. CheckValidPolicy 를 통해 모두 다른 숫자이고, 1~9 범위의 숫자인지 확인 (if return false, throw IllegalArgumentException)
+      3. player input 객체(Number) 생성
+
+3. player input 과 answer 간 비교를 통해 결과 만들기
+   1. ANSWER, INPUT 객체를 넘겨서 OUTPUT 객체 return
+   2. OUTPUT 객체를 통해 실행 결과를 출력
+   3. if 3 strike, 게임 다시시작? 끝내기 else 다시 input 받기
