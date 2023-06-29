@@ -16,7 +16,7 @@ public class Application {
     }
 
     public static void checkException(String number){
-        if(number.length() != 3) {
+        if(number.length() != Numbers.LENGTH.getValue()) {
             throw new IllegalArgumentException(); // 세자리 수
         }
         if(number.contains("0")) {
@@ -38,15 +38,15 @@ public class Application {
 
     public static int countStrike(String randomNum, String inputNum){
         int count = 0;
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < Numbers.LENGTH.getValue(); i++){
             if(randomNum.charAt(i) == inputNum.charAt(i)) count++;
         }
         return count;
     }
     public static int countBall(String randomNum, String inputNum){
         int count = 0;
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++){
+        for(int i = 0; i < Numbers.LENGTH.getValue(); i++) {
+            for(int j = 0; j < Numbers.LENGTH.getValue(); j++){
                 if(randomNum.charAt(i) == inputNum.charAt(j) && i != j) count++;
             }
         }
@@ -80,8 +80,8 @@ public class Application {
             ball = countBall(randNum, inputNum);
             String result = setStr(strike, ball);
             System.out.println(result);
-            if (strike == 3) {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            if (strike == Numbers.LENGTH.getValue()) {
+                System.out.println("Numbers.LENGTH.getValue()개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 return;
             }
         }
