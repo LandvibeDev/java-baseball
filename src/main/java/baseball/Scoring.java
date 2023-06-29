@@ -8,6 +8,7 @@ public class Scoring {
 		int ball;
 		boolean correct;
 	}
+
 	public class judge {
 		public scoreDTO scoring(int in) {
 			int first = in / 100;
@@ -21,14 +22,10 @@ public class Scoring {
 			return score;
 		}
 
-		public int countStrike(int first, int second, int third) {
+		public int countStrike(int[] inputArr) {
 			int strike = 0;
-			if (first == targetFirst)
-				strike++;
-			if (second == targetSecond)
-				strike++;
-			if (third == targetThird)
-				strike++;
+
+
 			return strike;
 		}
 
