@@ -81,21 +81,6 @@ public class Application {
 		return strikeBallQueue;
 	}
 
-	public static int calculateBallCount(String randomNumber, String userGuessNumber) {
-		int ballCount = Number.INIT_BALL_COUNT.getNumber();
-
-		for (int numberIndex = Number.ZERO.getNumber();
-			 numberIndex < Number.NUMBER_OF_DIGITS.getNumber(); numberIndex++) {
-			String guessDigit = String.valueOf(userGuessNumber.charAt(numberIndex));
-
-			if (randomNumber.contains(guessDigit) && randomNumber.indexOf(guessDigit) != numberIndex) {
-				ballCount++;
-			}
-		}
-
-		return ballCount;
-	}
-
 	public static void printHint(int strikeCount, int ballCount) {
 
 		StringBuilder hint = new StringBuilder();
