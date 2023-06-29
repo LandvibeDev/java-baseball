@@ -6,12 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballGame {
 
-	private NumberManager numberManager;
-
-	public BaseballGame() {
-		this.numberManager = new NumberManager();
-	}
-
 	public void startGame() {
 		while (true) {
 			proceedGame();
@@ -23,10 +17,10 @@ public class BaseballGame {
 	}
 
 	public void proceedGame() {
-		ThreeDigitNumber randomNumber = numberManager.generateRandomNumber();
+		ThreeDigitNumber randomNumber = NumberManager.generateRandomNumber();
 		while (true) {
-			ThreeDigitNumber userGuessNumber = numberManager.getUserGuessNumber();
-			Score score = numberManager.calculateScore(randomNumber, userGuessNumber);
+			ThreeDigitNumber userGuessNumber = NumberManager.getUserGuessNumber();
+			Score score = NumberManager.calculateScore(randomNumber, userGuessNumber);
 			printHint(score);
 
 			if (randomNumber.equals(userGuessNumber)) {
