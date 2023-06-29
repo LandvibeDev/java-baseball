@@ -25,7 +25,5 @@ public class Application {
         makeInputNumberService.makeNumber(number);
         Number inputNumber = makeInputNumberService.returnNumber();
 
-
-
     }
 }
