@@ -1,6 +1,8 @@
 package baseball;
 
 import baseball.domain.Number;
+import baseball.domain.Output;
+import baseball.service.CompareNumberService;
 import baseball.service.MakeNumberService;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -8,13 +10,14 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) throws IllegalArgumentException {
         AppConfig appConfig = new AppConfig();
-        MakeNumberService makeRandomAnswerService = appConfig.makeRandomAnswerService();
+        MakeNumberService makeAnswerService = appConfig.makeRandomAnswerService();
         MakeNumberService makeInputNumberService = appConfig.makeInputService();
+        CompareNumberService compareNumberService = appConfig.compareNumberService();
 
         // random Number 객체 생성
 
-        makeRandomAnswerService.makeNumber(-1);
-        Number answerNumber = makeInputNumberService.returnNumber();
+        makeAnswerService.makeNumber(-1);
+        Number answerNumber = makeAnswerService.returnNumber();
 
         //Input Number 객체 생성
 
@@ -25,5 +28,11 @@ public class Application {
         makeInputNumberService.makeNumber(number);
         Number inputNumber = makeInputNumberService.returnNumber();
 
+        // answer, input 비교
+        compareNumberService.setNumbers(inputNumber,answerNumber);
+        compareNumberService.compareNumbers();
+        Output output = compareNumberService.returnOutput();
+
+        //
     }
 }
