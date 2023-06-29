@@ -24,7 +24,6 @@ public class BaseballGame {
 
 	public void proceedGame() {
 		ThreeDigitNumber randomNumber = numberManager.generateRandomNumber();
-
 		while (true) {
 			ThreeDigitNumber userGuessNumber = numberManager.getUserGuessNumber();
 			Score score = numberManager.calculateScore(randomNumber, userGuessNumber);
@@ -40,11 +39,28 @@ public class BaseballGame {
 
 	public boolean repeatGame() {
 		System.out.println(Message.REPEAT_MESSAGE);
-		String isRepeat = Console.readLine();
-		if (isRepeat.equals(Integer.toString(Number.IS_REPEAT.get()))) {
+		String userInput = Console.readLine();
+		validateIsRepeat(userInput);
+		int isRepeat = Integer.parseInt(userInput);
+
+		if (isRepeat == Number.IS_REPEAT.get()) {
 			return false;
 		}
 		return true;
+	}
+
+	public void validateIsRepeat(String userInput) {
+		if (userInput.length() != Number.REPEAT_INPUT_SIZE.get()) {
+			throw new IllegalArgumentException();
+		}
+
+		if (!userInput.matches(RegexPattern.IS_NUMBER.getRegexPattern())) {
+			throw new IllegalArgumentException();
+		}
+
+		if (!userInput.equals("1") || !userInput.equals("2")) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public void printHint(Score score) {
