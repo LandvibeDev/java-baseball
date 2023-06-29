@@ -69,15 +69,13 @@ public class Application {
         return HintString.NOTHING.getValue();
     }
     public static void startGame(){
-        int strike = 0;
-        int ball = 0;
         String randNum = createRandomBall();
         String inputNum = "";
         while(!randNum.equals(inputNum)) {
             inputNum = input();
             checkException(inputNum);
-            strike = countStrike(randNum, inputNum);
-            ball = countBall(randNum, inputNum);
+            int strike = countStrike(randNum, inputNum);
+            int ball = countBall(randNum, inputNum);
             String result = printHint(strike, ball);
             System.out.println(result);
             if (strike == Numbers.LENGTH.getValue()) {
