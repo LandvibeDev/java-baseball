@@ -1,23 +1,23 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-
 public class Random {
 
-    public int[] makeRandomNumbers() {
-        Set<Integer> s = new HashSet<>();
-        int[] randomNumbers = new int[3];
-        while (s.size() < 3) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (s.contains(randomNumber)) {
+    public ArrayList<Integer> makeRandomNumbers() {
+        Set<Integer> numberSet = new HashSet<>();
+        ArrayList<Integer> randomNumbers = new ArrayList<>();
+        while (numberSet.size() < BaseballGame.number) {
+            int randomNumber = Randoms.pickNumberInRange(BaseballGame.start, BaseballGame.end);
+            if (numberSet.contains(randomNumber)) {
                continue;
             }
-            randomNumbers[s.size()] = randomNumber;
-            s.add(randomNumber);
+            randomNumbers.add(randomNumber);
+            numberSet.add(randomNumber);
         }
         return randomNumbers;
     }
