@@ -55,18 +55,18 @@ public class Application {
     public static String printHint(int strike, int ball){
         String str;
         if(strike != 0 && ball != 0){
-            str = ball + "볼 " + strike + "스트라이크";
+            str = ball + HintString.BALL.getValue() + strike + HintString.STRIKE.getValue();;
             return str;
         }
         else if(strike == 0 && ball != 0){
-            str = ball +"볼 ";
+            str = ball +HintString.BALL.getValue();;
             return str;
         }
         else if(strike != 0 && ball == 0){
-            str = strike + "스트라이크 ";
+            str = strike + HintString.STRIKE.getValue();
             return str;
         }
-        return "낫싱";
+        return HintString.NOTHING.getValue();
     }
     public static void startGame(){
         int strike = 0;
