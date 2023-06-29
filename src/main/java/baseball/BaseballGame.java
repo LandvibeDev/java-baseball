@@ -27,7 +27,7 @@ public class BaseballGame {
 
 		while (true) {
 			ThreeDigitNumber userGuessNumber = numberManager.getUserGuessNumber();
-			Score score = numberManager.calculateStrikeBallCount(randomNumber, userGuessNumber);
+			Score score = numberManager.calculateScore(randomNumber, userGuessNumber);
 			int strikeCount = score.getStrikeCount();
 			int ballCount = score.getBallCount();
 			printHint(strikeCount, ballCount);

@@ -58,7 +58,7 @@ public class NumberManager {
 		}
 	}
 
-	public Score calculateStrikeBallCount(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
+	public Score calculateScore(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.get();
 		int ballCount = Number.INIT_BALL_COUNT.get();
 		String randomNumberString = String.valueOf(randomNumber.getThreeDigitNumber());
