@@ -44,10 +44,10 @@ public class Validator {
 			throw new IllegalArgumentException();
 		}
 
-		String one = String.valueOf(Number.IS_REPEAT);
-		String two = String.valueOf(Number.IS_NOT_REPEAT);
+		String one = String.valueOf(Number.IS_REPEAT.get());
+		String two = String.valueOf(Number.IS_NOT_REPEAT.get());
 
-		if (!userInput.equals(one) || !userInput.equals(two)) {
+		if (!userInput.equals(one) && !userInput.equals(two)) {
 			throw new IllegalArgumentException();
 		}
 	}
