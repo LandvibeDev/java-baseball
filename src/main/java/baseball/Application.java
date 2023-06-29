@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static String createRandomBall(){
         Ball ball = new Ball(BallBoundary.MAX_VALUE.getValue(), BallBoundary.MIN_VALUE.getValue());
-        return ball.getBall_number();
+        return ball.getBallNumber();
     }
     public static String input(){
         System.out.print("숫자를 입력해주세요 : ");
@@ -36,18 +36,18 @@ public class Application {
         }
     }
 
-    public static int countStrike(String random_num, String input_num){
+    public static int countStrike(String randomNum, String inputNum){
         int count = 0;
         for(int i = 0; i < 3; i++){
-            if(random_num.charAt(i) == input_num.charAt(i)) count++;
+            if(randomNum.charAt(i) == inputNum.charAt(i)) count++;
         }
         return count;
     }
-    public static int countBall(String random_num, String input_num){
+    public static int countBall(String randomNum, String inputNum){
         int count = 0;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++){
-                if(random_num.charAt(i) == input_num.charAt(j) && i != j) count++;
+                if(randomNum.charAt(i) == inputNum.charAt(j) && i != j) count++;
             }
         }
         return count;
