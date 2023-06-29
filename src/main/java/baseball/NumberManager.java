@@ -1,9 +1,7 @@
 package baseball;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -45,15 +43,17 @@ public class NumberManager {
 			throw new IllegalArgumentException();
 		}
 
-		Set<Character> digitSet = new HashSet<>();
 		for (char digit : userInput.toCharArray()) {
 			if (!Character.isDigit(digit)) {
 				throw new IllegalArgumentException();
 			}
-			digitSet.add(digit);
 		}
 
-		if (digitSet.size() != Number.NUMBER_OF_DIGITS.get()) {
+		int userInputNumber = Integer.parseInt(userInput);
+		int hundredDigit = userInputNumber / 100;
+		int tenDigit = (userInputNumber % 100) / 10;
+		int oneDigit = userInputNumber % 10;
+		if (hundredDigit == tenDigit || tenDigit == oneDigit || oneDigit == hundredDigit) {
 			throw new IllegalArgumentException();
 		}
 	}
