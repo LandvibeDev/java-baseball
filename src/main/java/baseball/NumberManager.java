@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class NumberManager {
-	public ThreeDigitNumber generateRandomNumber() {
+	public static ThreeDigitNumber generateRandomNumber() {
 		List<Integer> digitList = new ArrayList<>();
 
 		while (digitList.size() < Number.NUMBER_OF_DIGITS.get()) {
@@ -22,7 +22,7 @@ public class NumberManager {
 		return randomNumber;
 	}
 
-	public ThreeDigitNumber getUserGuessNumber() {
+	public static ThreeDigitNumber getUserGuessNumber() {
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE);
 		String userInput = Console.readLine();
 		Validator.validateUserInput(userInput);
@@ -32,7 +32,7 @@ public class NumberManager {
 		return userGuessNumber;
 	}
 
-	public Score calculateScore(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
+	public static Score calculateScore(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.get();
 		int ballCount = Number.INIT_BALL_COUNT.get();
 		Validator.validateThreeDigitNumber(randomNumber, userGuessNumber);
