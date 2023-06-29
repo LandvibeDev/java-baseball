@@ -79,7 +79,7 @@ public class Application {
             String result = printHint(strike, ball);
             System.out.println(result);
             if (strike == Numbers.LENGTH.getValue()) {
-                System.out.println("Numbers.LENGTH.getValue()개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                System.out.println(Numbers.LENGTH.getValue() + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 return;
             }
         }
