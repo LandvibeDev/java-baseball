@@ -1,50 +1,52 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class NumberManager {
-	public int generateRandomNumber() {
-		StringBuilder randomNumber = new StringBuilder();
+	public ThreeDigitNumber generateRandomNumber() {
+		List<Integer> digitList = new ArrayList<>();
 
-		while (randomNumber.length() < Number.NUMBER_OF_DIGITS.get()) {
-			String randomDigit = String.valueOf(
-				Randoms.pickNumberInRange(Number.START_NUMBER_RANGE.get(), Number.END_NUMBER_RANGE.get()));
+		while (digitList.size() < Number.NUMBER_OF_DIGITS.get()) {
+			int randomDigit = Randoms.pickNumberInRange(Number.START_NUMBER_RANGE.get(), Number.END_NUMBER_RANGE.get());
 
-			if (randomNumber.indexOf(randomDigit) == Number.IS_CONTAIN.get()) {
-				randomNumber.append(randomDigit);
+			if (!digitList.contains(randomDigit)) {
+				digitList.add(randomDigit);
 			}
 		}
 
-		return Integer.parseInt(randomNumber.toString());
+		ThreeDigitNumber randomNumber = new ThreeDigitNumber(digitList);
+		return randomNumber;
 	}
 
-	public int getUserGuessNumber() {
+	public ThreeDigitNumber getUserGuessNumber() {
 		System.out.print(Message.GUESS_NUMBER_REQUEST_MESSAGE);
-		String userGuessNumber = Console.readLine();
-		return Integer.parseInt(userGuessNumber);
+		String userInput = Console.readLine();
+		validateUserInput(userInput);
+		ThreeDigitNumber userGuessNumber = new ThreeDigitNumber(Integer.parseInt(userInput));
+		return userGuessNumber;
 	}
 
-	public void validateUserGuessNumber(String userGuessNumber) {
-		if (userGuessNumber.length() != Number.NUMBER_OF_DIGITS.get()) {
+	public void validateUserInput(String userInput) {
+		if (userInput.length() != Number.NUMBER_OF_DIGITS.get()) {
 			throw new IllegalArgumentException();
 		}
 
-		if (userGuessNumber.contains(Integer.toString(Number.ZERO.get()))) {
+		if (userInput.contains(Integer.toString(Number.ZERO.get()))) {
 			throw new IllegalArgumentException();
 		}
 
-		if (!userGuessNumber.matches(RegexPattern.IS_NUMBER.getRegexPattern())) {
+		if (!userInput.matches(RegexPattern.IS_NUMBER.getRegexPattern())) {
 			throw new IllegalArgumentException();
 		}
 
 		Set<Character> digitSet = new HashSet<>();
-		for (char digit : userGuessNumber.toCharArray()) {
+		for (char digit : userInput.toCharArray()) {
 			if (!Character.isDigit(digit)) {
 				throw new IllegalArgumentException();
 			}
@@ -56,27 +58,26 @@ public class NumberManager {
 		}
 	}
 
-	public Queue<Integer> calculateStrikeBallCount(String randomNumber, String userGuessNumber) {
+	public Score calculateStrikeBallCount(ThreeDigitNumber randomNumber, ThreeDigitNumber userGuessNumber) {
 		int strikeCount = Number.INIT_STRIKE_COUNT.get();
 		int ballCount = Number.INIT_BALL_COUNT.get();
-
-		Queue<Integer> strikeBallQueue = new LinkedList<>();
+		String randomNumberString = String.valueOf(randomNumber.getThreeDigitNumber());
+		String userGuessNumberString = String.valueOf(userGuessNumber.getThreeDigitNumber());
 
 		for (int numberIndex = Number.ZERO.get();
 			 numberIndex < Number.NUMBER_OF_DIGITS.get(); numberIndex++) {
-			if (randomNumber.charAt(numberIndex) == userGuessNumber.charAt(numberIndex)) {
+			if (randomNumberString.charAt(numberIndex) == userGuessNumberString.charAt(numberIndex)) {
 				strikeCount++;
 			}
 
-			String guessDigit = String.valueOf(userGuessNumber.charAt(numberIndex));
+			String guessDigit = String.valueOf(userGuessNumberString.charAt(numberIndex));
 
-			if (randomNumber.contains(guessDigit) && randomNumber.indexOf(guessDigit) != numberIndex) {
+			if (randomNumberString.contains(guessDigit) && randomNumberString.indexOf(guessDigit) != numberIndex) {
 				ballCount++;
 			}
 		}
 
-		strikeBallQueue.add(strikeCount);
-		strikeBallQueue.add(ballCount);
-		return strikeBallQueue;
+		Score score = new Score(strikeCount, ballCount);
+		return score;
 	}
 }

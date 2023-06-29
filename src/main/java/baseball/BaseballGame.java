@@ -23,14 +23,13 @@ public class BaseballGame {
 	}
 
 	public void proceedGame() {
-		String randomNumber = Integer.toString(numberManager.generateRandomNumber());
+		ThreeDigitNumber randomNumber = numberManager.generateRandomNumber();
 
 		while (true) {
-			String userGuessNumber = Integer.toString(numberManager.getUserGuessNumber());
-			numberManager.validateUserGuessNumber(userGuessNumber);
-			Queue<Integer> strikeBallQueue = numberManager.calculateStrikeBallCount(randomNumber, userGuessNumber);
-			int strikeCount = strikeBallQueue.poll();
-			int ballCount = strikeBallQueue.poll();
+			ThreeDigitNumber userGuessNumber = numberManager.getUserGuessNumber();
+			Score score = numberManager.calculateStrikeBallCount(randomNumber, userGuessNumber);
+			int strikeCount = score.getStrikeCount();
+			int ballCount = score.getBallCount();
 			printHint(strikeCount, ballCount);
 
 			if (randomNumber.equals(userGuessNumber)) {
