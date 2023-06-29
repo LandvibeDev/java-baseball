@@ -9,7 +9,8 @@ public enum Number {
 	ZERO(0),
 	INIT_STRIKE_COUNT(0),
 	INIT_BALL_COUNT(0),
-	IS_REPEAT(2),
+	IS_REPEAT(1),
+	IS_NOT_REPEAT(2),
 	REPEAT_INPUT_SIZE(1);
 
 	private final int number;
