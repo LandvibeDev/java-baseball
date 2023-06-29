@@ -43,7 +43,7 @@ public class BaseballGame {
 		Validator.validateIsRepeat(userInput);
 		int isRepeat = Integer.parseInt(userInput);
 
-		if (isRepeat == Number.IS_REPEAT.get()) {
+		if (isRepeat == Number.IS_NOT_REPEAT.get()) {
 			return false;
 		}
 		return true;
