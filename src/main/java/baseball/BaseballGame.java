@@ -28,9 +28,7 @@ public class BaseballGame {
 		while (true) {
 			ThreeDigitNumber userGuessNumber = numberManager.getUserGuessNumber();
 			Score score = numberManager.calculateScore(randomNumber, userGuessNumber);
-			int strikeCount = score.getStrikeCount();
-			int ballCount = score.getBallCount();
-			printHint(strikeCount, ballCount);
+			printHint(score);
 
 			if (randomNumber.equals(userGuessNumber)) {
 				break;
@@ -49,8 +47,10 @@ public class BaseballGame {
 		return true;
 	}
 
-	public void printHint(int strikeCount, int ballCount) {
+	public void printHint(Score score) {
 		StringBuilder hint = new StringBuilder();
+		int strikeCount = score.getStrikeCount();
+		int ballCount = score.getBallCount();
 
 		if (ballCount != Number.ZERO.get()) {
 			hint.append(ballCount).append(Message.BALL_MESSAGE);
@@ -66,5 +66,4 @@ public class BaseballGame {
 
 		System.out.println(hint);
 	}
-
 }
