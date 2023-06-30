@@ -84,4 +84,26 @@ public class NumberBaseballGame {
             }
         }
     }
+
+    public void startNumberBaseBallGame() {
+        while(true) {
+            playNumberBaseBallGame();
+            if(isEndGame()) {
+                return;
+            }
+        }
+    }
+
+    private boolean isEndGame() {
+        System.out.println(Constants.GameMessage.RE_GAME);
+        String stateOfGame = Console.readLine();
+        validTestStateOfGame(stateOfGame);
+        return stateOfGame.equals(Constants.Symbol.END_GAME);
+    }
+
+    private void validTestStateOfGame(String state) {
+        if(!state.equals(Constants.Symbol.END_GAME) && !state.equals(Constants.Symbol.RESTART_GAME)) {
+            throw new IllegalArgumentException(Constants.ExceptionMessage.STATE_OF_GAME);
+        }
+    }
 }
