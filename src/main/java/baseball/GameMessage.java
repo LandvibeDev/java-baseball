@@ -8,7 +8,6 @@ public enum GameMessage {
     STRIKE("스트라이크"),
     NOTTING("낫싱");
 
-
     public String message;
 
     GameMessage(String message) {
