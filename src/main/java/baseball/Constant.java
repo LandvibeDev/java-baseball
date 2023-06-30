@@ -2,7 +2,7 @@ package baseball;
 
 public enum Constant {
     RESTART("1"),
-    EXIT("0");
+    EXIT("2");
 
     public String value;
 
