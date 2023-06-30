@@ -12,7 +12,7 @@ public class Judge {
 	boolean correct;
 
 	public Judge() {
-		Target target = new Target();
+		target = new Target();
 		strike = 0;
 		ball = 0;
 		correct = false;

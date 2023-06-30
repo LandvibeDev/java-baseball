@@ -8,67 +8,65 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Game {
 
+	Integer playGame;
 	ArrayList<Integer> in;
 	Judge judge;
+	ExceptionHandler handler;
 
 	public Game() {
-		in = new ArrayList<>();
-		judge = new Judge();
+		handler = new ExceptionHandler();
+
 	}
 
 	public void execution() {
-		int playGame = 1;
-		while (playGame == 1) {
+		playGame = PLAY_GAME;
+		while (playGame == PLAY_GAME) {
 			this.play();
 			System.out.print(END_GAME_MESSAGE);
 			playGame = Integer.parseInt(Console.readLine());
-			
-			if (playGame != 1 && playGame != 2) {
-				throw new IllegalArgumentException(); // 예외 처리
-			}
+			handler.handleInvalidSelection(playGame);
+
 		}
 	}
 
 	public void play() {
+		judge = new Judge();
 		while (!judge.correct) {
 			input();
-			System.out.println();
 			judge.scoring(in);
 			printScore(judge);
+			System.out.println();
 		}
 	}
 
 	public void input() {
+		in = new ArrayList<>();
 		String inStr = "";
 		System.out.print(GUESS_NUMBER_MESSAGE);
 		inStr = Console.readLine();
 		char[] chars = inStr.toCharArray();
-		if (inStr.length() != NUM_OF_DIGIT) {
-			throw new IllegalArgumentException(); // 예외 처리
-		}
-		for (int i = 0; i < inStr.length(); i++) {
-			if (inStr.charAt(i) < '1' || inStr.charAt(i) > '9') {
-				throw new IllegalArgumentException(); // 예외 처리
-			}
+		handler.handleInvalidLength(inStr.length());
 
-			in.add(chars[i] - '0');
+		for (int i = 0; i < inStr.length(); i++) {
+			handler.handleOutOfRange(chars[i]);
+			in.add(chars[i] - ZERO_CHAR);
 		}
 
 	}
 
 	public void printScore(Judge judge) {
 		if (judge.ball == 0 && judge.strike == 0) {
-			System.out.println(NOTHING);
+			System.out.println(NOTHING_STRING);
 			return;
 		}
 		if (judge.ball != 0) {
-			System.out.print(judge.ball + BALL);
+			System.out.print(judge.ball + BALL_STRING);
 		}
 		if (judge.strike != 0) {
 			if (judge.ball != 0) {
-				System.out.print(" ");
+				System.out.print(SPACE);
 			}
-			System.out.print(judge.strike + STRIKE);
+			System.out.print(judge.strike + STRIKE_STRING);
 		}
 	}
 
