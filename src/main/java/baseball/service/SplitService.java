@@ -3,15 +3,19 @@ package baseball.service;
 import baseball.domain.Form;
 import baseball.domain.Number;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class SplitService {
-    private static final Logger logger = Logger.getLogger(MakeNumberService.class.getName());
 
-    public Number split(int number, Form form) throws IllegalArgumentException {
+    private static final SplitService instance = new SplitService();
+
+    public static SplitService getInstance() {
+        return instance;
+    }
+
+    private SplitService() {
+    }
+
+    public static Number split(int number, Form form) {
         if (number < 100 || number > 999) {
-            logger.log(Level.SEVERE, "IllegalArgumentException 발생", IllegalArgumentException.class);
             throw new IllegalArgumentException();
         }
 

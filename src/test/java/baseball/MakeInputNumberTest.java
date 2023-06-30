@@ -2,6 +2,7 @@ package baseball;
 
 import baseball.domain.Form;
 import baseball.domain.Number;
+import baseball.service.MakeInputService;
 import baseball.service.MakeNumberService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,13 +12,11 @@ public class MakeInputNumberTest {
     @Test
     void input_숫자_생성확인() {
         //given
-        AppConfig appConfig = new AppConfig();
-        MakeNumberService makeInputService = appConfig.makeInputService();
+        MakeNumberService makeInputService = MakeInputService.getInstance();
 
         //when
         int number = 123;
-        makeInputService.makeNumber(number);
-        Number inputNumber = makeInputService.returnNumber();
+        Number inputNumber = makeInputService.makeNumber(number);
 
         int first = inputNumber.getFirst();
         int second = inputNumber.getSecond();
@@ -32,8 +31,7 @@ public class MakeInputNumberTest {
     @Test
     void input_에러_확인() {
         //given
-        AppConfig appConfig = new AppConfig();
-        MakeNumberService makeInputService = appConfig.makeInputService();
+        MakeNumberService makeInputService = MakeInputService.getInstance();
 
         //when
         int errorNumber = 111;

@@ -2,37 +2,30 @@ package baseball.service;
 
 import baseball.domain.Form;
 import baseball.domain.Number;
-import baseball.policy.CheckValidNumberPolicy;
-import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
+import static baseball.service.SplitService.*;
+
 
 public class MakeInputService implements MakeNumberService {
-    private static final Logger logger = Logger.getLogger(MakeNumberService.class.getName());
 
-    private final CheckValidNumberPolicy checkValidNumberPolicy;
-    private final SplitService splitService;
-    private Number inputNumber;
+    private static final MakeNumberService instance = new MakeInputService();
 
-    public MakeInputService(CheckValidNumberPolicy checkValidNumberPolicy, SplitService splitService) {
-        this.checkValidNumberPolicy = checkValidNumberPolicy;
-        this.splitService = splitService;
+    public static MakeNumberService getInstance() {
+        return instance;
+    }
+
+    private MakeInputService() {
     }
 
     @Override
-    public void makeNumber(int number) throws IllegalArgumentException {
-        inputNumber = splitService.split(number, Form.INPUT);
+    public Number makeNumber(int number) {
+        Number inputNumber = split(number, Form.INPUT);
 
-        if (!checkValidNumberPolicy.isValidNumber(inputNumber)) {
-            logger.log(Level.SEVERE, "IllegalArgumentException 발생", IllegalArgumentException.class);
+        if (!isValidNumber(inputNumber)) {
             throw new IllegalArgumentException();
         }
+        return inputNumber;
     }
 
-
-    @Override
-    public Number returnNumber() {
-        return this.inputNumber;
-    }
 }

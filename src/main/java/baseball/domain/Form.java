@@ -1,5 +1,5 @@
 package baseball.domain;
 
-public enum Form{
+public enum Form {
     ANSWER, INPUT
 }

@@ -4,9 +4,9 @@ public class Output {
     private int strike;
     private int ball;
 
-    public Output(int strike, int ball) {
-        this.strike = strike;
-        this.ball = ball;
+    public Output() {
+        this.strike = 0;
+        this.ball = 0;
     }
 
     public int getStrike() {
@@ -15,5 +15,13 @@ public class Output {
 
     public int getBall() {
         return ball;
+    }
+
+    public void addStrike() {
+        strike++;
+    }
+
+    public void addBall() {
+        ball++;
     }
 }

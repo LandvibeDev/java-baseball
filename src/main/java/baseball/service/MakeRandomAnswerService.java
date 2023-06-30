@@ -2,37 +2,34 @@ package baseball.service;
 
 import baseball.domain.Form;
 import baseball.domain.Number;
-import baseball.policy.CheckValidNumberPolicy;
-import baseball.repository.AnswerRepository;
 import camp.nextstep.edu.missionutils.Randoms;
+
+import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
 
 public class MakeRandomAnswerService implements MakeNumberService {
 
-    private final AnswerRepository answerRepository;
-    private final CheckValidNumberPolicy checkValidNumberPolicy;
-    private final SplitService splitService;
+    private static final MakeRandomAnswerService instance = new MakeRandomAnswerService();
 
-    public MakeRandomAnswerService(AnswerRepository answerRepository, CheckValidNumberPolicy checkValidNumberPolicy, SplitService splitService) {
-        this.answerRepository = answerRepository;
-        this.checkValidNumberPolicy = checkValidNumberPolicy;
-        this.splitService = splitService;
+    public static final MakeRandomAnswerService getInstance() {
+        return instance;
     }
 
-    @Override
-    public void makeNumber(int number) throws IllegalArgumentException {
-        while (true) {
-            number = Randoms.pickNumberInRange(100, 999);
-            Number answerNumber = splitService.split(number, Form.ANSWER);
+    private MakeRandomAnswerService() {
+    }
 
-            if (checkValidNumberPolicy.isValidNumber(answerNumber)) {
-                answerRepository.save(answerNumber);
-                return;
+
+    @Override
+    public Number makeNumber(int number) {
+        while (true) {
+            int first = Randoms.pickNumberInRange(1, 9);
+            int second = Randoms.pickNumberInRange(1, 9);
+            int third = Randoms.pickNumberInRange(1, 9);
+            //System.out.println("debug :: " + number);
+            Number answerNumber = new Number(first, second, third, Form.ANSWER);
+
+            if (isValidNumber(answerNumber)) {
+                return answerNumber;
             }
         }
-    }
-
-    @Override
-    public Number returnNumber() {
-        return answerRepository.getAnswer();
     }
 }

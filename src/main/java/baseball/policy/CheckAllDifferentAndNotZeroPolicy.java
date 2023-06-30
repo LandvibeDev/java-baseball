@@ -2,9 +2,18 @@ package baseball.policy;
 
 import baseball.domain.Number;
 
-public class CheckAllDifferentAndNotZeroPolicy implements CheckValidNumberPolicy {
+public class CheckAllDifferentAndNotZeroPolicy {
 
-    public boolean isValidNumber(Number number) {
+    private static final CheckAllDifferentAndNotZeroPolicy instance = new CheckAllDifferentAndNotZeroPolicy();
+
+    public static CheckAllDifferentAndNotZeroPolicy getInstance() {
+        return instance;
+    }
+
+    private CheckAllDifferentAndNotZeroPolicy() {
+    }
+
+    public static boolean isValidNumber(Number number) {
         if (number.getFirst() == 0 || number.getSecond() == 0 || number.getThird() == 0) {
             return false;
         }
@@ -17,7 +26,6 @@ public class CheckAllDifferentAndNotZeroPolicy implements CheckValidNumberPolicy
         if (number.getFirst() == number.getThird()) {
             return false;
         }
-
         return true;
     }
 }

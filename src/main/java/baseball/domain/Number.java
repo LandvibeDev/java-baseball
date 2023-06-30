@@ -1,6 +1,5 @@
 package baseball.domain;
 
-
 public class Number {
     private int first;
     private int second;
