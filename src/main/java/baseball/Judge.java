@@ -1,25 +1,30 @@
 package baseball;
 
-import static baseball.Target.*;
+import static baseball.Constants.*;
 
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Judge {
-
-	Target target = new Target();
-
+	Target target;
 	int strike;
 	int ball;
 	boolean correct;
 
-	public void scoring(Vector<Integer> in) {
-		this.strike = countStrike(in);
-		this.ball = countBall(in) - this.strike;
-		this.correct = (this.strike == numOfDigit);
+	public Judge() {
+		Target target = new Target();
+		strike = 0;
+		ball = 0;
+		correct = false;
 	}
 
-	private int countStrike(Vector<Integer> in) {
+	public void scoring(ArrayList<Integer> in) {
+		this.strike = countStrike(in);
+		this.ball = countBall(in) - this.strike;
+		this.correct = (this.strike == NUM_OF_DIGIT);
+	}
+
+	private int countStrike(ArrayList<Integer> in) {
 		int strike = 0;
 		for (int i = 0; i < in.size(); i++) {
 			if (target.targetArr.get(i).equals(in.get(i)))
@@ -28,7 +33,7 @@ public class Judge {
 		return strike;
 	}
 
-	private int countBall(Vector<Integer> in) {
+	private int countBall(ArrayList<Integer> in) {
 		int tmp = 0;
 		for (Integer elem : in) {
 			if (target.targetArr.contains(elem))
