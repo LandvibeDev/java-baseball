@@ -72,4 +72,16 @@ public class NumberBaseballGame {
         }
         System.out.println();
     }
+
+    private void playNumberBaseBallGame() {
+        createRandomNumber();
+        while(true) {
+            inputUserNumber();
+            checkAccuracy();
+            printAccuracy();
+            if(userNumber.equals(computerNumber)) {
+                break;
+            }
+        }
+    }
 }
