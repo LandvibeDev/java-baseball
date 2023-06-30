@@ -54,4 +54,22 @@ public class NumberBaseballGame {
             }
         }
     }
+
+    private void printAccuracy() {
+        if(balls == 0 && strikes == 0) {
+            System.out.println(Constants.GameMessage.NOTHING_);
+            return;
+        }
+        if(strikes == 3) {
+            System.out.println(Constants.Number.LENGTH + Constants.GameMessage.END_GAME);
+            return;
+        }
+        if(balls != 0) {
+            System.out.print(balls + Constants.GameMessage.BALLS);
+        }
+        if(strikes != 0) {
+            System.out.print(strikes + Constants.GameMessage.STRIKES);
+        }
+        System.out.println();
+    }
 }
