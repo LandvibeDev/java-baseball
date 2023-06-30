@@ -34,7 +34,7 @@ public class Game {
 		while (!judge.correct) {
 			input();
 			judge.scoring(in);
-			printScore(judge);
+			judge.printScore();
 			System.out.println();
 		}
 	}
@@ -53,22 +53,6 @@ public class Game {
 			in.add(curNum - ZERO_CHAR);
 		}
 
-	}
-
-	public void printScore(Judge judge) {
-		if (judge.ball == 0 && judge.strike == 0) {
-			System.out.println(NOTHING_STRING);
-			return;
-		}
-		if (judge.ball != 0) {
-			System.out.print(judge.ball + BALL_STRING);
-		}
-		if (judge.strike != 0) {
-			if (judge.ball != 0) {
-				System.out.print(SPACE);
-			}
-			System.out.print(judge.strike + STRIKE_STRING);
-		}
 	}
 
 }

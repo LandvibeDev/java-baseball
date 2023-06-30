@@ -41,5 +41,20 @@ public class Judge {
 		}
 		return tmp;
 	}
+	public void printScore() {
+		if (this.ball == 0 && this.strike == 0) {
+			System.out.println(NOTHING_STRING);
+			return;
+		}
+		if (this.ball != 0) {
+			System.out.print(this.ball + BALL_STRING);
+		}
+		if (this.strike != 0) {
+			if (this.ball != 0) {
+				System.out.print(SPACE);
+			}
+			System.out.print(this.strike + STRIKE_STRING);
+		}
+	}
 
 }
