@@ -40,4 +40,18 @@ public class NumberBaseballGame {
             throw new IllegalArgumentException(Constants.ExceptionMessage.USER_INPUT);
         }
     }
+
+    private void checkAccuracy() {
+        strikes = 0;
+        balls = 0;
+        for(int i = 0; i < 3; i++) {
+            if(userNumber.get(i).equals(computerNumber.get(i))) {
+                strikes++;
+                continue;
+            }
+            if(computerNumber.contains(userNumber.get(i))) {
+                balls++;
+            }
+        }
+    }
 }
