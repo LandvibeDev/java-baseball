@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static baseball.GameMessage.*;
+
 public class BaseballGame {
 
     private int strike;
@@ -36,7 +38,7 @@ public class BaseballGame {
 
     private void getInputNumbers() {
         inputNumbers.clear();
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(ENTER_NUMBERS.message);
         String inputString = Console.readLine();
         Validation validation = new Validation();
         validation.validateInput(inputString);
@@ -45,9 +47,13 @@ public class BaseballGame {
         }
     }
 
-    private void checkStrikeAndBall() {
+    private void initializeScore() {
         strike = 0;
         ball = 0;
+    }
+
+    private void checkStrikeAndBall() {
+        initializeScore();
         for (int i = 0; i <Rule.number; i++) {
             if (randomNumbers.get(i) == inputNumbers.get(i)) {
                 strike++;
@@ -61,18 +67,17 @@ public class BaseballGame {
         }
     }
 
-    private String getResult() {
+    private void getResult() {
         result = "";
         if (strike == 0 && ball == 0) {
-            result += "낫싱";
+            result += NOTTING.message;
         }
         if (ball > 0) {
-            result += ball + "볼 ";
+            result += ball + BALL.message;
         }
         if (strike > 0) {
-            result += strike + "스트라이크";
+            result += strike + STRIKE.message;
         }
-        return result;
     }
 
     private void printResult() {
@@ -80,8 +85,8 @@ public class BaseballGame {
     }
 
     private void printWhenSuccess() {
-        System.out.println(Rule.number + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        System.out.println(Rule.number + SUCCESS.message);
+        System.out.println(ASK_RETRY.message);
     }
 
     private boolean isSuccess() {
