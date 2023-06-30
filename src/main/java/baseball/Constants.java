@@ -20,8 +20,4 @@ public class Constants {
 	public static final int PLAY_GAME = 1;
 	public static final int END_GAME = 2;
 
-
-
-
-
 }

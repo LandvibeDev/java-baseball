@@ -44,12 +44,13 @@ public class Game {
 		String inStr = "";
 		System.out.print(GUESS_NUMBER_MESSAGE);
 		inStr = Console.readLine();
-		char[] chars = inStr.toCharArray();
 		handler.handleInvalidLength(inStr.length());
 
 		for (int i = 0; i < inStr.length(); i++) {
-			handler.handleOutOfRange(chars[i]);
-			in.add(chars[i] - ZERO_CHAR);
+			char curNum = inStr.charAt(i);
+			handler.handleOutOfRange(curNum);
+			handler.handleDuplication(curNum, in);
+			in.add(curNum - ZERO_CHAR);
 		}
 
 	}

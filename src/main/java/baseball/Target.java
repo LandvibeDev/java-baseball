@@ -9,7 +9,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Target {
 
-
 	ArrayList<Integer> targetArr;
 
 	public Target() {
