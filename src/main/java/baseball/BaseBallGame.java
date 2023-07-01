@@ -12,13 +12,13 @@ public class BaseBallGame {
     private final MakeNumberService makeAnswerService;
     private final MakeNumberService makeInputNumberService;
     private final CompareNumberService compareNumberService;
-    private final PrintOutputService printOutputService;
+    private final PrintScore printScore;
 
-    public BaseBallGame(MakeNumberService makeAnswerService, MakeNumberService makeInputNumberService, CompareNumberService compareNumberService, PrintOutputService printOutputService) {
+    public BaseBallGame(MakeNumberService makeAnswerService, MakeNumberService makeInputNumberService, CompareNumberService compareNumberService, PrintScore printScore) {
         this.makeAnswerService = makeAnswerService;
         this.makeInputNumberService = makeInputNumberService;
         this.compareNumberService = compareNumberService;
-        this.printOutputService = printOutputService;
+        this.printScore = printScore;
     }
 
     public Map<Integer, Integer> createRandomNumber() {
@@ -68,9 +68,9 @@ public class BaseBallGame {
         while (true) {
             Number inputNumber = createInputNumber();
             Score output = compareNumberObjects(answerNumberMap, inputNumber);
-            printOutputService.printScore(output);
+            printScore.printScore(output);
 
-            if (printOutputService.isGameSuccess(output)) {
+            if (printScore.isGameSuccess(output)) {
                 return isNewGame();
             }
         }

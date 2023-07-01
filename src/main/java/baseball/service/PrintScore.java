@@ -2,7 +2,7 @@ package baseball.service;
 
 import baseball.domain.Score;
 
-public class PrintOutputService {
+public class PrintScore {
 
     private void printBallScore(Score score) {
         int ball = score.getBall();

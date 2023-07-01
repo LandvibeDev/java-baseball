@@ -16,12 +16,12 @@ public class AppConfig {
         return new MakeRandomAnswerService();
     }
 
-    public PrintOutputService printOutputService() {
-        return new PrintOutputService();
+    public PrintScore printScore() {
+        return new PrintScore();
     }
 
     public BaseBallGame baseBallGame() {
-        return new BaseBallGame(makeRandomAnswerService(), makeInputService(), compareNumberService(), printOutputService());
+        return new BaseBallGame(makeRandomAnswerService(), makeInputService(), compareNumberService(), printScore());
     }
 
 
