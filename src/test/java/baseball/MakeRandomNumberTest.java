@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 public class MakeRandomNumberTest {
 
+    AppConfig appConfig = new AppConfig();
     @Test
     void 랜덤_숫자_생성확인() {
         //given
-        MakeNumberService makeRandomAnswerService = MakeRandomAnswerService.getInstance();
 
         //when
-        Number answerNumber = makeRandomAnswerService.makeNumber(-1);
+        Number answerNumber = appConfig.makeRandomAnswerService().makeNumber(-1);
         int first = answerNumber.getFirst();
         int second = answerNumber.getSecond();
         int third = answerNumber.getThird();
