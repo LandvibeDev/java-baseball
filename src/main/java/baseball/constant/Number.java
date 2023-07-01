@@ -1,7 +1,7 @@
 package baseball.constant;
 
 public enum Number {
-    REPLAY_GAME(1), END_GAME(2);
+    REPLAY_GAME(1), END_GAME(2), LENGTH_OF_INPUT(3);
 
     private final int value;
 

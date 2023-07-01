@@ -22,7 +22,8 @@ public class SplitService {
 
         first = number;
 
-        return new Number(first, second, third, form);
+        Number inputNumberObject = new Number(first, second, third, form);
+        return inputNumberObject;
     }
 
 }

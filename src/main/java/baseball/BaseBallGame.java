@@ -28,16 +28,21 @@ public class BaseBallGame {
         return answerNumberMap;
     }
 
+    // 비정상적인 input 이 들어와서 int 로 변환하지 못할 경우 IllegalArgumentException 발생
+
+    public int convertToInt(String command) {
+        try {
+            return Integer.parseInt(command);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public Number createInputNumber() {
         System.out.print(Message.INPUT_NUMBER.get());
 
         String inputNumberCommand = Console.readLine();
-        int inputNumber;
-        try {
-            inputNumber = Integer.parseInt(inputNumberCommand);
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
-        }
+        int inputNumber = convertToInt(inputNumberCommand);
         Number inputNumberObject = makeInputNumberService.makeNumber(inputNumber);
         return inputNumberObject;
     }

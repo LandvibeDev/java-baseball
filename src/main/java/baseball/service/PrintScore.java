@@ -1,6 +1,7 @@
 package baseball.service;
 
 import baseball.constant.Message;
+import baseball.constant.Number;
 import baseball.domain.Score;
 
 public class PrintScore {
@@ -28,7 +29,7 @@ public class PrintScore {
         }
     }
 
-    public void printScore(Score score){
+    public void printScore(Score score) {
         printBallScore(score);
         printStrikeScore(score);
         printIfScoreIsNothing(score);
@@ -39,7 +40,7 @@ public class PrintScore {
     public boolean isGameSuccess(Score score) {
         int strike = score.getStrike();
 
-        if (strike == 3) {
+        if (strike == Number.LENGTH_OF_INPUT.value()) {
             System.out.println(Message.CLEAR_GAME.get());
             return true;
         }
