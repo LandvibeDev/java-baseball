@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class BaseBallGame {
 
-    private final MakeNumberService makeAnswerService;
-    private final MakeNumberService makeInputNumberService;
+    private final MakeRandomAnswerService makeAnswerService;
+    private final MakeInputService makeInputNumberService;
     private final CompareNumberService compareNumberService;
     private final PrintScore printScore;
 
-    public BaseBallGame(MakeNumberService makeAnswerService, MakeNumberService makeInputNumberService, CompareNumberService compareNumberService, PrintScore printScore) {
+    public BaseBallGame(MakeRandomAnswerService makeAnswerService, MakeInputService makeInputNumberService, CompareNumberService compareNumberService, PrintScore printScore) {
         this.makeAnswerService = makeAnswerService;
         this.makeInputNumberService = makeInputNumberService;
         this.compareNumberService = compareNumberService;

@@ -7,9 +7,7 @@ import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
 import static baseball.service.SplitService.*;
 
 
-public class MakeInputService implements MakeNumberService {
-
-    @Override
+public class MakeInputService {
     public Number makeNumber(int number) {
         Number inputNumber = split(number, Form.INPUT);
 

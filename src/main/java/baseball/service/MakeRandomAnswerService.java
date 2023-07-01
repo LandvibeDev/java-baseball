@@ -6,9 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
 
-public class MakeRandomAnswerService implements MakeNumberService {
-
-    @Override
+public class MakeRandomAnswerService {
     public Number makeNumber(int number) {
         while (true) {
             int first = Randoms.pickNumberInRange(1, 9);
