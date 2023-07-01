@@ -9,10 +9,17 @@ import java.util.Map;
 
 public class BaseBallGame {
 
-    private final MakeNumberService makeAnswerService = MakeRandomAnswerService.getInstance();
-    private final MakeNumberService makeInputNumberService = MakeInputService.getInstance();
-    private final CompareNumberService compareNumberService = CompareNumberService.getInstance();
-    private final PrintOutputService printOutputService = PrintOutputService.getInstance();
+    private final MakeNumberService makeAnswerService;
+    private final MakeNumberService makeInputNumberService;
+    private final CompareNumberService compareNumberService;
+    private final PrintOutputService printOutputService;
+
+    public BaseBallGame(MakeNumberService makeAnswerService, MakeNumberService makeInputNumberService, CompareNumberService compareNumberService, PrintOutputService printOutputService) {
+        this.makeAnswerService = makeAnswerService;
+        this.makeInputNumberService = makeInputNumberService;
+        this.compareNumberService = compareNumberService;
+        this.printOutputService = printOutputService;
+    }
 
     public Map<Integer, Integer> createRandomNumber() {
         Number answerNumber = makeAnswerService.makeNumber(-1);

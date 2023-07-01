@@ -8,15 +8,6 @@ import java.util.Map;
 
 public class CompareNumberService {
 
-    private static final CompareNumberService instance = new CompareNumberService();
-
-    public static CompareNumberService getInstance() {
-        return instance;
-    }
-
-    private CompareNumberService() {
-    }
-
     public Map<Integer, Integer> setAnswerNumbers(Number answerNumber) {
         Map<Integer, Integer> answerNumberMap = new HashMap<>();
 

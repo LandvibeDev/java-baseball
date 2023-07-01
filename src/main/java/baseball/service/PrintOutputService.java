@@ -4,15 +4,6 @@ import baseball.domain.Output;
 
 public class PrintOutputService {
 
-    private static final PrintOutputService instance = new PrintOutputService();
-
-    public static PrintOutputService getInstance() {
-        return instance;
-    }
-
-    private PrintOutputService() {
-    }
-
     public void printOutput(Output output) {
         int strike = output.getStrike();
         int ball = output.getBall();

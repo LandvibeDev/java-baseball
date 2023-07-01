@@ -5,15 +5,6 @@ import baseball.domain.Number;
 
 public class SplitService {
 
-    private static final SplitService instance = new SplitService();
-
-    public static SplitService getInstance() {
-        return instance;
-    }
-
-    private SplitService() {
-    }
-
     public static Number split(int number, Form form) {
         if (number < 100 || number > 999) {
             throw new IllegalArgumentException();

@@ -8,16 +8,6 @@ import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
 
 public class MakeRandomAnswerService implements MakeNumberService {
 
-    private static final MakeRandomAnswerService instance = new MakeRandomAnswerService();
-
-    public static final MakeRandomAnswerService getInstance() {
-        return instance;
-    }
-
-    private MakeRandomAnswerService() {
-    }
-
-
     @Override
     public Number makeNumber(int number) {
         while (true) {
