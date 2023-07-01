@@ -43,14 +43,14 @@ public class BaseballGame {
             throw new IllegalArgumentException();
         }
 
-        for(int i=0; i<3; i++){     //입력 받은 값이 숫자 이외의 값인 경우 에외처리
+        for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){     //입력 받은 값이 숫자 이외의 값인 경우 에외처리
             if(!Character.isDigit(userNumber.charAt(i))){
                 throw new IllegalArgumentException();
             }
         }
 
         Set<Character> set = new HashSet<Character>();      //입력 받은 숫자가 중복된 경우 예외처리
-        for(int i=0; i<3; i++){
+        for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){
             set.add(userNumber.charAt(i));
         }
         if(!(set.size() == NumberInfo.SIZE_OF_NUMBER.getNumberInfo())){
