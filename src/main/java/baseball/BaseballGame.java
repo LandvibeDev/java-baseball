@@ -3,11 +3,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class BaseballGame {
     private String userNumber;
+    ExceptionContoller exeptionContol = new ExceptionContoller();
     public void run(){
         while(true) {
             playGame();
@@ -24,9 +23,9 @@ public class BaseballGame {
         createRandomNumber(randomNumber);
         countCalculate(randomNumber);
     }
-    private void createRandomNumber(ArrayList<Integer> randomNumber){  //랜덤 숫자 받기
+    private void createRandomNumber(ArrayList<Integer> randomNumber){
 
-        while(randomNumber.size() < NumberInfo.SIZE_OF_NUMBER.getNumberInfo()){     //중복 불가 3자리 수
+        while(randomNumber.size() < NumberInfo.SIZE_OF_NUMBER.getNumberInfo()){
             int tmp = Randoms.pickNumberInRange(NumberInfo.START_OF_RANGE.getNumberInfo(), NumberInfo.END_OF_RANGE.getNumberInfo());
 
             if(!randomNumber.contains(tmp)){
@@ -39,23 +38,11 @@ public class BaseballGame {
         System.out.print(Message.INPUT_USERNUMBER_MESSAGE.getMessage());
         userNumber = Console.readLine();
 
-        if(userNumber.length() != NumberInfo.SIZE_OF_NUMBER.getNumberInfo()){    //입력 받은 숫자가 3자리가 아닐경우 예외처리
-            throw new IllegalArgumentException();
-        }
+        exeptionContol.notIntegerException(userNumber);
+        exeptionContol.notThreeDigitException(userNumber);
+        exeptionContol.reduplicationException(userNumber);
+        exeptionContol.zeroValueException(userNumber);
 
-        for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){     //입력 받은 값이 숫자 이외의 값인 경우 에외처리
-            if(!Character.isDigit(userNumber.charAt(i))){
-                throw new IllegalArgumentException();
-            }
-        }
-
-        Set<Character> set = new HashSet<Character>();      //입력 받은 숫자가 중복된 경우 예외처리
-        for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){
-            set.add(userNumber.charAt(i));
-        }
-        if(!(set.size() == NumberInfo.SIZE_OF_NUMBER.getNumberInfo())){
-            throw new IllegalArgumentException();
-        }
     }
 
     private void countCalculate(ArrayList<Integer> randomNumber){
