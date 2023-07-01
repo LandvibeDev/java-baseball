@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BaseballGame {
-    private String userNumber = "";
+    private String userNumber;
     public void run(){
         while(true) {
             playGame();
@@ -22,7 +22,6 @@ public class BaseballGame {
     private void playGame(){
         ArrayList<Integer> randomNumber = new ArrayList<Integer>();
         createRandomNumber(randomNumber);
-        System.out.println(randomNumber);
         countCalculate(randomNumber);
     }
     private void createRandomNumber(ArrayList<Integer> randomNumber){  //랜덤 숫자 받기
