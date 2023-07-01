@@ -11,7 +11,7 @@ public class BaseballGame {
         while(true) {
             playGame();
 
-            if(questRestartGame()){
+            if(askRestartGame()){
                 continue;
             }
             break;
@@ -75,7 +75,7 @@ public class BaseballGame {
         }
     }
 
-    private boolean questRestartGame(){
+    private boolean askRestartGame(){
         System.out.println(Message.RESTART_QUESTION_MESSAGE.getMessage());
         String cmd = Console.readLine();
         int restart = Integer.parseInt(cmd);
