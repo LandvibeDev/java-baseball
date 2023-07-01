@@ -83,7 +83,11 @@ public class BaseballGame {
         if(restart == NumberInfo.RESTART_TRUE_NUMBER.getNumberInfo()){
             return true;
         }
-        return false;
+        else if(restart == NumberInfo.RESTART_FALSE_NUMBER.getNumberInfo()){
+            return false;
+        }
+
+        throw new IllegalArgumentException();
     }
 
 }
