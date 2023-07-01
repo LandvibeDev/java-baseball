@@ -22,6 +22,7 @@ public class BaseballGame {
     private void playGame(){
         ArrayList<Integer> randomNumber = new ArrayList<Integer>();
         createRandomNumber(randomNumber);
+        System.out.println(randomNumber);
         countCalculate(randomNumber);
     }
     private void createRandomNumber(ArrayList<Integer> randomNumber){  //랜덤 숫자 받기
@@ -36,7 +37,7 @@ public class BaseballGame {
     }
 
     private void giveUserNumber(){  //유저 숫자 받기
-        System.out.print("숫자를 입력해 주세요 : ");
+        System.out.print(Message.INPUT_USERNUMBER_MESSAGE.getMessage());
         userNumber = Console.readLine();
 
         if(userNumber.length() != 3){    //입력 받은 숫자가 3자리가 아닐경우 예외처리
@@ -77,19 +78,19 @@ public class BaseballGame {
             }
 
             if (strikeCount == 3) {
-                System.out.println("3스트라이크");
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                System.out.println(strikeCount + Message.STRIKE_MESSAGE.getMessage());
+                System.out.println(Message.CORRECT_MESSAGE.getMessage());
                 break;
             } else if (strikeCount == 0 && ballCount == 0) {
-                System.out.println("낫싱");
+                System.out.println(Message.NOTHING_MESSAGE.getMessage());
                 continue;
             }
-            System.out.println((ballCount-strikeCount) + "볼 " + strikeCount + "스트라이크");
+            System.out.println((ballCount-strikeCount) + Message.BALL_MESSAGE.getMessage() + strikeCount + Message.STRIKE_MESSAGE.getMessage());
         }
     }
 
     private boolean questRestartGame(){
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(Message.RESTART_QUESTION_MESSAGE.getMessage());
         String cmd = Console.readLine();
 
         if(cmd.equals("1")){
