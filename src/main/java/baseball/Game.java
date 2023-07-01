@@ -12,10 +12,10 @@ public class Game {
 	ArrayList<Integer> in;
 	Judge judge;
 	ExceptionHandler handler;
-
+	Target target;
+	
 	public Game() {
 		handler = new ExceptionHandler();
-
 	}
 
 	public void execution() {
@@ -30,7 +30,8 @@ public class Game {
 	}
 
 	public void play() {
-		judge = new Judge();
+		target = new Target();
+		judge = new Judge(target);
 		while (!judge.correct) {
 			input();
 			judge.scoring(in);

@@ -11,8 +11,8 @@ public class Judge {
 	int ball;
 	boolean correct;
 
-	public Judge() {
-		target = new Target();
+	public Judge(Target target) {
+		this.target = target;
 		strike = 0;
 		ball = 0;
 		correct = false;
