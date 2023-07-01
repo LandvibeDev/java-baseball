@@ -24,7 +24,8 @@ public class BaseBallGame {
 
     public Map<Integer, Integer> createRandomNumber() {
         Number answerNumber = makeAnswerService.makeNumber(-1);
-        return compareNumberService.setAnswerNumbers(answerNumber);
+        Map<Integer, Integer> answerNumberMap = compareNumberService.setAnswerNumbers(answerNumber);
+        return answerNumberMap;
     }
 
     public Number createInputNumber() {
@@ -37,11 +38,13 @@ public class BaseBallGame {
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException();
         }
-        return makeInputNumberService.makeNumber(inputNumber);
+        Number inputNumberObject = makeInputNumberService.makeNumber(inputNumber);
+        return inputNumberObject;
     }
 
     public Score compareNumberObjects(Map<Integer, Integer> answerNumberMap, Number inputNumberObject) {
-        return compareNumberService.compareNumbers(answerNumberMap, inputNumberObject);
+        Score score = compareNumberService.compareNumbers(answerNumberMap, inputNumberObject);
+        return score;
     }
 
     public boolean isNewGame() {
@@ -71,7 +74,8 @@ public class BaseBallGame {
             printScore.printScore(output);
 
             if (printScore.isGameSuccess(output)) {
-                return isNewGame();
+                boolean isReplay = isNewGame();
+                return isReplay;
             }
         }
     }
