@@ -26,8 +26,8 @@ public class BaseballGame {
     }
     private void createRandomNumber(ArrayList<Integer> randomNumber){  //랜덤 숫자 받기
 
-        while(randomNumber.size() < 3){     //중복 불가 3자리 수
-            int tmp = Randoms.pickNumberInRange(1, 9);
+        while(randomNumber.size() < NumberInfo.SIZE_OF_NUMBER.getNumberInfo()){     //중복 불가 3자리 수
+            int tmp = Randoms.pickNumberInRange(NumberInfo.START_OF_RANGE.getNumberInfo(), NumberInfo.END_OF_RANGE.getNumberInfo());
 
             if(!randomNumber.contains(tmp)){
                 randomNumber.add(tmp);
@@ -39,7 +39,7 @@ public class BaseballGame {
         System.out.print(Message.INPUT_USERNUMBER_MESSAGE.getMessage());
         userNumber = Console.readLine();
 
-        if(userNumber.length() != 3){    //입력 받은 숫자가 3자리가 아닐경우 예외처리
+        if(userNumber.length() != NumberInfo.SIZE_OF_NUMBER.getNumberInfo()){    //입력 받은 숫자가 3자리가 아닐경우 예외처리
             throw new IllegalArgumentException();
         }
 
@@ -53,7 +53,7 @@ public class BaseballGame {
         for(int i=0; i<3; i++){
             set.add(userNumber.charAt(i));
         }
-        if(!(set.size() == 3)){
+        if(!(set.size() == NumberInfo.SIZE_OF_NUMBER.getNumberInfo())){
             throw new IllegalArgumentException();
         }
     }
@@ -65,7 +65,7 @@ public class BaseballGame {
             int ballCount = 0;
             int strikeCount = 0;
 
-            for (int i=0; i<3; i++) {
+            for (int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++) {
                 int tmp = userNumber.charAt(i) - '0';
 
                 if (randomNumber.indexOf(tmp) == i) {
@@ -76,7 +76,7 @@ public class BaseballGame {
                 }
             }
 
-            if (strikeCount == 3) {
+            if (strikeCount == NumberInfo.SIZE_OF_NUMBER.getNumberInfo()) {
                 System.out.println(strikeCount + Message.STRIKE_MESSAGE.getMessage());
                 System.out.println(Message.CORRECT_MESSAGE.getMessage());
                 break;
@@ -91,8 +91,9 @@ public class BaseballGame {
     private boolean questRestartGame(){
         System.out.println(Message.RESTART_QUESTION_MESSAGE.getMessage());
         String cmd = Console.readLine();
+        int restart = Integer.parseInt(cmd);
 
-        if(cmd.equals("1")){
+        if(restart == NumberInfo.RESTART_TRUE_NUMBER.getNumberInfo()){
             return true;
         }
         return false;
