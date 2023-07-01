@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.constant.*;
 import baseball.domain.Number;
 import baseball.domain.Score;
 import baseball.service.*;
@@ -27,7 +28,7 @@ public class BaseBallGame {
     }
 
     public Number createInputNumber() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(Message.INPUT_NUMBER.get());
 
         String inputNumberCommand = Console.readLine();
         int inputNumber;
@@ -44,8 +45,7 @@ public class BaseBallGame {
     }
 
     public boolean isNewGame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
+        System.out.println(Message.ASK_NEW_GAME.get());
         String endGameOrNotCommand = Console.readLine();
         int command;
         try {
@@ -54,10 +54,10 @@ public class BaseBallGame {
             throw new IllegalArgumentException();
         }
 
-        if (command == 1) {
+        if (command == baseball.constant.Number.REPLAY_GAME.value()) {
             return true;
         }
-        if (command == 2) {
+        if (command == baseball.constant.Number.END_GAME.value()) {
             return false;
         }
 

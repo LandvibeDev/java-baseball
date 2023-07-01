@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.constant.Message;
 import baseball.domain.Score;
 
 public class PrintScore {
@@ -7,14 +8,14 @@ public class PrintScore {
     private void printBallScore(Score score) {
         int ball = score.getBall();
         if (ball != 0) {
-            System.out.print(ball + "볼 ");
+            System.out.print(ball + Message.BALL.get());
         }
     }
 
     private void printStrikeScore(Score score) {
         int strike = score.getStrike();
         if (strike != 0) {
-            System.out.print(strike + "스트라이크");
+            System.out.print(strike + Message.STRIKE.get());
         }
     }
 
@@ -23,7 +24,7 @@ public class PrintScore {
         int ball = score.getBall();
 
         if (ball == 0 && strike == 0) {
-            System.out.print("낫싱");
+            System.out.print(Message.NOTHING.get());
         }
     }
 
@@ -39,7 +40,7 @@ public class PrintScore {
         int strike = score.getStrike();
 
         if (strike == 3) {
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println(Message.CLEAR_GAME.get());
             return true;
         }
         return false;
