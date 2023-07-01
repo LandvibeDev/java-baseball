@@ -127,3 +127,23 @@
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 - 프로그램 구현을 완료했을 때 `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
+
+### 기능구현
+
+1. 랜덤 숫자 생성
+  -예외처리
+    *중복 불가
+    *3자리 숫자
+    *pickUniqueNumbersInRange() 함수를 이용하여 구현
+2. 유저 숫자 입력 받기
+  -예외처리
+    *숫자 값
+    *중복 불가
+    *3자리 숫자
+3. 입력값과 출력값 비교
+  -정답(3스트라이크) 시 종료
+  -오답 시 스트라이크, 볼, 낫싱 값 출력
+4. 재시작/종료 기능
+  -1 입력 시 재시작
+  -2 입력 시 종료
+  -그 외 값 입력 시 예외처리
