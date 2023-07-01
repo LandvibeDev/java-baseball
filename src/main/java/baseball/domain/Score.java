@@ -1,10 +1,10 @@
 package baseball.domain;
 
-public class Output {
+public class Score {
     private int strike;
     private int ball;
 
-    public Output() {
+    public Score() {
         this.strike = 0;
         this.ball = 0;
     }

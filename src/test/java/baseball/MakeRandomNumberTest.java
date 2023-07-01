@@ -1,8 +1,6 @@
 package baseball;
 
 import baseball.domain.Number;
-import baseball.service.MakeNumberService;
-import baseball.service.MakeRandomAnswerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

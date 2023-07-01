@@ -1,7 +1,7 @@
 package baseball;
 
 import baseball.domain.Number;
-import baseball.domain.Output;
+import baseball.domain.Score;
 import baseball.service.*;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -39,7 +39,7 @@ public class BaseBallGame {
         return makeInputNumberService.makeNumber(inputNumber);
     }
 
-    public Output compareNumberObjects(Map<Integer, Integer> answerNumberMap, Number inputNumberObject) {
+    public Score compareNumberObjects(Map<Integer, Integer> answerNumberMap, Number inputNumberObject) {
         return compareNumberService.compareNumbers(answerNumberMap, inputNumberObject);
     }
 
@@ -67,8 +67,8 @@ public class BaseBallGame {
     public boolean compareNumbers(Map<Integer, Integer> answerNumberMap) {
         while (true) {
             Number inputNumber = createInputNumber();
-            Output output = compareNumberObjects(answerNumberMap, inputNumber);
-            printOutputService.printOutput(output);
+            Score output = compareNumberObjects(answerNumberMap, inputNumber);
+            printOutputService.printScore(output);
 
             if (printOutputService.isGameSuccess(output)) {
                 return isNewGame();

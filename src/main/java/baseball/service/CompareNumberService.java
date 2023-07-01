@@ -1,7 +1,7 @@
 package baseball.service;
 
 import baseball.domain.Number;
-import baseball.domain.Output;
+import baseball.domain.Score;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,24 +18,24 @@ public class CompareNumberService {
         return answerNumberMap;
     }
 
-    private Output compareOne(Map<Integer, Integer> answerNumberMap, Output output, int data, int index) {
+    private Score compareOne(Map<Integer, Integer> answerNumberMap, Score score, int data, int index) {
         if (answerNumberMap.containsKey(data)) {
             if (answerNumberMap.get(data) == index) {
-                output.addStrike();
-                return output;
+                score.addStrike();
+                return score;
             }
-            output.addBall();
+            score.addBall();
         }
-        return output;
+        return score;
     }
 
-    public Output compareNumbers(Map<Integer, Integer> answerNumberMap, Number inputNumber) {
-        Output output = new Output();
+    public Score compareNumbers(Map<Integer, Integer> answerNumberMap, Number inputNumber) {
+        Score score = new Score();
 
-        output = compareOne(answerNumberMap, output, inputNumber.getFirst(), 1);
-        output = compareOne(answerNumberMap, output, inputNumber.getSecond(), 2);
-        output = compareOne(answerNumberMap, output, inputNumber.getThird(), 3);
+        score = compareOne(answerNumberMap, score, inputNumber.getFirst(), 1);
+        score = compareOne(answerNumberMap, score, inputNumber.getSecond(), 2);
+        score = compareOne(answerNumberMap, score, inputNumber.getThird(), 3);
 
-        return output;
+        return score;
     }
 }
