@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CheckValidNumberServiceTest {
@@ -26,9 +27,9 @@ class CheckValidNumberServiceTest {
         //when
 
         //then
-        Assertions.assertThat(checkValidNumberService.isValidRangeNumber(99)).isEqualTo(false);
-        Assertions.assertThat(checkValidNumberService.isValidRangeNumber(1000)).isEqualTo(false);
-        Assertions.assertThat(checkValidNumberService.isValidRangeNumber(100)).isEqualTo(true);
+        assertThat(checkValidNumberService.isValidRangeNumber(99)).isEqualTo(false);
+        assertThat(checkValidNumberService.isValidRangeNumber(1000)).isEqualTo(false);
+        assertThat(checkValidNumberService.isValidRangeNumber(100)).isEqualTo(true);
     }
 
     @Test
@@ -48,8 +49,8 @@ class CheckValidNumberServiceTest {
         //when
 
         //then
-        Assertions.assertThat(checkValidNumberService.isValidNumberMap(zeroInMap)).isEqualTo(false);
-        Assertions.assertThat(checkValidNumberService.isValidNumberMap(duplicatedMap)).isEqualTo(false);
+        assertThat(checkValidNumberService.isValidNumberMap(zeroInMap)).isEqualTo(false);
+        assertThat(checkValidNumberService.isValidNumberMap(duplicatedMap)).isEqualTo(false);
     }
 
     @Test

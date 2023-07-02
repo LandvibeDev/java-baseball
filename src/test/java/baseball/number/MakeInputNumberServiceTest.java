@@ -11,8 +11,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class MakeInputNumberServiceTest {
 
     AppConfig testAppConfig = new AppConfig();
-    CheckValidNumberService checkValidNumberService = testAppConfig.checkValidNumberService();
-    SplitService splitService = testAppConfig.splitService();
 
     @Test
     void 맵_생성_성공() {
@@ -24,9 +22,10 @@ class MakeInputNumberServiceTest {
 
         //then
 
-        Assertions.assertEquals(0, inputNumberMap.get(1));
-        Assertions.assertEquals(1, inputNumberMap.get(2));
-        Assertions.assertEquals(2, inputNumberMap.get(3));
+        assertThat(inputNumberMap.get(1)).isEqualTo(0);
+        assertThat(inputNumberMap.get(2)).isEqualTo(1);
+        assertThat(inputNumberMap.get(3)).isEqualTo(2);
+
     }
 
     @Test
@@ -50,23 +49,4 @@ class MakeInputNumberServiceTest {
 
     }
 
-    @Test
-    void 에러_인풋_통합_확인() {
-        //given
-        int zeroErrorInput = checkValidNumberService.convertToInt("012");
-        Map<Integer, Integer> zeroErrorMap = splitService.split(zeroErrorInput);
-
-        int duplicateErrorInput = checkValidNumberService.convertToInt("111");
-        Map<Integer, Integer> duplicateErrorMap = splitService.split(duplicateErrorInput);
-
-        int normalInput = checkValidNumberService.convertToInt("123");
-        Map<Integer, Integer> normalMap = splitService.split(normalInput);
-
-        //when
-
-        //then
-        assertThat(checkValidNumberService.isValidNumberMap(zeroErrorMap)).isEqualTo(false);
-        assertThat(checkValidNumberService.isValidNumberMap(duplicateErrorMap)).isEqualTo(false);
-        assertThat(checkValidNumberService.isValidNumberMap(normalMap)).isEqualTo(true);
-    }
 }
