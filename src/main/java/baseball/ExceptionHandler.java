@@ -24,8 +24,8 @@ public class ExceptionHandler {
 		}
 	}
 
-	public void handleDuplication(char cur, ArrayList<Integer> pastNums) {
-		if (pastNums.contains(cur - getZeroChar())) {
+	public void handleDuplication(char cur, ArrayList<Integer> oldNums) {
+		if (oldNums.contains(cur - getZeroChar())) {
 			throw new IllegalArgumentException();
 		}
 	}

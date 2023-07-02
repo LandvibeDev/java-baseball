@@ -8,14 +8,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Target {
 
-	ArrayList<Integer> targetArr;
+	private ArrayList<Integer> target;
 
 	public Target() {
-		targetArr = new ArrayList<>();
-		while (targetArr.size() < getNumOfDigit()) {
+		target = new ArrayList<>();
+		while (getTarget().size() < getNumOfDigit()) {
 			int randomNum = Randoms.pickNumberInRange(getMinOfRange(), getMaxOfRange());
-			if (!targetArr.contains(randomNum))
-				targetArr.add(randomNum);
+			if (!getTarget().contains(randomNum))
+				getTarget().add(randomNum);
 		}
+	}
+
+	public ArrayList<Integer> getTarget() {
+		return target;
 	}
 }

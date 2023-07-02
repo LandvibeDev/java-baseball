@@ -32,7 +32,7 @@ public class Game {
 	public void play() {
 		target = new Target();
 		judge = new Judge(target);
-		while (!judge.correct) {
+		while (!judge.isCorrect()) {
 			input();
 			judge.scoring(in);
 			judge.printScore();

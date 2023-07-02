@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Judge {
 	Target target;
-	int strike;
-	int ball;
-	boolean correct;
+	private int strike;
+	private int ball;
+	private boolean correct;
 
 	public Judge(Target target) {
 		this.target = target;
@@ -26,7 +26,7 @@ public class Judge {
 	private int countStrike(ArrayList<Integer> in) {
 		int strike = 0;
 		for (int i = 0; i < in.size(); i++) {
-			if (target.targetArr.get(i).equals(in.get(i)))
+			if (target.getTarget().get(i).equals(in.get(i)))
 				strike++;
 		}
 		return strike;
@@ -35,7 +35,7 @@ public class Judge {
 	private int countBall(ArrayList<Integer> in) {
 		int tmp = 0;
 		for (Integer elem : in) {
-			if (target.targetArr.contains(elem))
+			if (target.getTarget().contains(elem))
 				tmp++;
 		}
 		return tmp;
@@ -55,6 +55,9 @@ public class Judge {
 			}
 			System.out.print(this.strike + getStrikeString());
 		}
+	}
+	public boolean isCorrect(){
+		return correct;
 	}
 
 }
