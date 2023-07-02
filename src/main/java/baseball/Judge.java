@@ -3,7 +3,6 @@ package baseball;
 import static baseball.Constants.*;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Judge {
 	Target target;
@@ -21,7 +20,7 @@ public class Judge {
 	public void scoring(ArrayList<Integer> in) {
 		this.strike = countStrike(in);
 		this.ball = countBall(in) - this.strike;
-		this.correct = (this.strike == NUM_OF_DIGIT);
+		this.correct = (this.strike == getNumOfDigit());
 	}
 
 	private int countStrike(ArrayList<Integer> in) {
@@ -41,19 +40,20 @@ public class Judge {
 		}
 		return tmp;
 	}
+
 	public void printScore() {
 		if (this.ball == 0 && this.strike == 0) {
-			System.out.println(NOTHING_STRING);
+			System.out.println(getNothingString());
 			return;
 		}
 		if (this.ball != 0) {
-			System.out.print(this.ball + BALL_STRING);
+			System.out.print(this.ball + getBallString());
 		}
 		if (this.strike != 0) {
 			if (this.ball != 0) {
-				System.out.print(SPACE);
+				System.out.print(getSPACE());
 			}
-			System.out.print(this.strike + STRIKE_STRING);
+			System.out.print(this.strike + getStrikeString());
 		}
 	}
 

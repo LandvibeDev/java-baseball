@@ -7,25 +7,25 @@ import java.util.ArrayList;
 public class ExceptionHandler {
 
 	public void handleInvalidSelection(Integer selection) {
-		if (!selection.equals(PLAY_GAME) && !selection.equals(END_GAME)) {
+		if (!selection.equals(getPlayGame()) && !selection.equals(getEndGame())) {
 			throw new IllegalArgumentException();
 		}
 	}
 
 	public void handleInvalidLength(int length) {
-		if (length != NUM_OF_DIGIT) {
+		if (length != getNumOfDigit()) {
 			throw new IllegalArgumentException();
 		}
 	}
 
 	public void handleOutOfRange(char number) {
-		if (number < MIN_OF_RANGE_CHAR || number > MAX_OF_RANGE_CHAR) {
+		if (number < getMinOfRangeChar() || number > getMaxOfRangeChar()) {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	public void handleDuplication(char curNum, ArrayList<Integer> pastNums) {
-		if (pastNums.contains(curNum - ZERO_CHAR)) {
+	public void handleDuplication(char cur, ArrayList<Integer> pastNums) {
+		if (pastNums.contains(cur - getZeroChar())) {
 			throw new IllegalArgumentException();
 		}
 	}

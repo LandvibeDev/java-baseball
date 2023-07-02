@@ -13,16 +13,16 @@ public class Game {
 	Judge judge;
 	ExceptionHandler handler;
 	Target target;
-	
+
 	public Game() {
 		handler = new ExceptionHandler();
 	}
 
 	public void execution() {
-		playGame = PLAY_GAME;
-		while (playGame == PLAY_GAME) {
+		playGame = getPlayGame();
+		while (playGame == getPlayGame()) {
 			this.play();
-			System.out.print(END_GAME_MESSAGE);
+			System.out.print(getEndGameMessage());
 			playGame = Integer.parseInt(Console.readLine());
 			handler.handleInvalidSelection(playGame);
 
@@ -43,15 +43,14 @@ public class Game {
 	public void input() {
 		in = new ArrayList<>();
 		String inStr = "";
-		System.out.print(GUESS_NUMBER_MESSAGE);
+		System.out.print(getGuessNumberMessage());
 		inStr = Console.readLine();
 		handler.handleInvalidLength(inStr.length());
 
-		for (int i = 0; i < inStr.length(); i++) {
-			char curNum = inStr.charAt(i);
-			handler.handleOutOfRange(curNum);
-			handler.handleDuplication(curNum, in);
-			in.add(curNum - ZERO_CHAR);
+		for (char cur : inStr.toCharArray()) {
+			handler.handleOutOfRange(cur);
+			handler.handleDuplication(cur, in);
+			in.add(cur - getZeroChar());
 		}
 
 	}
