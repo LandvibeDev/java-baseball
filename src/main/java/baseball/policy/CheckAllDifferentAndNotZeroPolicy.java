@@ -1,22 +1,21 @@
 package baseball.policy;
 
-import baseball.domain.Number;
+import baseball.constant.Number;
+
+import java.util.Map;
 
 public class CheckAllDifferentAndNotZeroPolicy {
 
-    public static boolean isValidNumber(Number number) {
-        if (number.getFirst() == 0 || number.getSecond() == 0 || number.getThird() == 0) {
+    public boolean isValidNumber(Map<Integer, Integer> randomNumberMap) {
+
+        if(randomNumberMap.size() != Number.LENGTH_OF_INPUT.value())
             return false;
+
+        for (int key : randomNumberMap.keySet()) {
+            if (key == 0)
+                return false;
         }
-        if (number.getFirst() == number.getSecond()) {
-            return false;
-        }
-        if (number.getSecond() == number.getThird()) {
-            return false;
-        }
-        if (number.getFirst() == number.getThird()) {
-            return false;
-        }
+
         return true;
     }
 }

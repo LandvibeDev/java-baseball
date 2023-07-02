@@ -1,7 +1,6 @@
 package baseball;
 
 import baseball.constant.*;
-import baseball.domain.Number;
 import baseball.domain.Score;
 import baseball.service.*;
 import camp.nextstep.edu.missionutils.Console;
@@ -13,19 +12,18 @@ public class BaseBallGame {
     private final MakeRandomAnswerService makeAnswerService;
     private final MakeInputService makeInputNumberService;
     private final CompareNumberService compareNumberService;
-    private final PrintScore printScore;
+    private final ScoreService scoreService;
 
-    public BaseBallGame(MakeRandomAnswerService makeAnswerService, MakeInputService makeInputNumberService, CompareNumberService compareNumberService, PrintScore printScore) {
+    public BaseBallGame(MakeRandomAnswerService makeAnswerService, MakeInputService makeInputNumberService, CompareNumberService compareNumberService, ScoreService scoreService) {
         this.makeAnswerService = makeAnswerService;
         this.makeInputNumberService = makeInputNumberService;
         this.compareNumberService = compareNumberService;
-        this.printScore = printScore;
+        this.scoreService = scoreService;
     }
 
     public Map<Integer, Integer> createRandomNumber() {
-        Number answerNumber = makeAnswerService.makeNumber(-1);
-        Map<Integer, Integer> answerNumberMap = compareNumberService.setAnswerNumbers(answerNumber);
-        return answerNumberMap;
+        Map<Integer, Integer> randomNumberMap = makeAnswerService.makeRandomNumber();
+        return randomNumberMap;
     }
 
     // 비정상적인 input 이 들어와서 int 로 변환하지 못할 경우 IllegalArgumentException 발생
@@ -38,18 +36,14 @@ public class BaseBallGame {
         }
     }
 
-    public Number createInputNumber() {
+    public Map<Integer, Integer> createInputNumber() {
         System.out.print(Message.INPUT_NUMBER.get());
 
         String inputNumberCommand = Console.readLine();
         int inputNumber = convertToInt(inputNumberCommand);
-        Number inputNumberObject = makeInputNumberService.makeNumber(inputNumber);
-        return inputNumberObject;
-    }
+        Map<Integer, Integer> inputNumberMap = makeInputNumberService.makeNumber(inputNumber);
 
-    public Score compareNumberObjects(Map<Integer, Integer> answerNumberMap, Number inputNumberObject) {
-        Score score = compareNumberService.compareNumbers(answerNumberMap, inputNumberObject);
-        return score;
+        return inputNumberMap;
     }
 
     public boolean isNewGame() {
@@ -72,13 +66,13 @@ public class BaseBallGame {
         throw new IllegalArgumentException();
     }
 
-    public boolean compareNumbers(Map<Integer, Integer> answerNumberMap) {
+    public boolean compareNumbers(Map<Integer, Integer> randomNumberMap) {
         while (true) {
-            Number inputNumber = createInputNumber();
-            Score output = compareNumberObjects(answerNumberMap, inputNumber);
-            printScore.printScore(output);
+            Map<Integer, Integer> inputNumberMap = createInputNumber();
+            Score score = compareNumberService.compareNumbers(randomNumberMap, inputNumberMap);
+            scoreService.printScore(score);
 
-            if (printScore.isGameSuccess(output)) {
+            if (scoreService.isGameSuccess(score)) {
                 boolean isReplay = isNewGame();
                 return isReplay;
             }

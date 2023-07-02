@@ -1,17 +1,25 @@
 package baseball.service;
 
-import baseball.domain.Form;
-import baseball.domain.Number;
+import baseball.policy.CheckAllDifferentAndNotZeroPolicy;
 
-import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
-import static baseball.service.SplitService.*;
+import java.util.Map;
+
 
 
 public class MakeInputService {
-    public Number makeNumber(int number) {
-        Number inputNumber = split(number, Form.INPUT);
 
-        if (!isValidNumber(inputNumber)) {
+    private final SplitService splitService;
+    private final CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy;
+
+    public MakeInputService(SplitService splitService, CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy) {
+        this.splitService = splitService;
+        this.checkAllDifferentAndNotZeroPolicy = checkAllDifferentAndNotZeroPolicy;
+    }
+
+    public Map<Integer, Integer> makeNumber(int number) {
+        Map<Integer, Integer> inputNumber = splitService.split(number);
+
+        if (!checkAllDifferentAndNotZeroPolicy.isValidNumber(inputNumber)) {
             throw new IllegalArgumentException();
         }
         return inputNumber;

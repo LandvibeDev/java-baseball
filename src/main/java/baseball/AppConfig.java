@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.policy.CheckAllDifferentAndNotZeroPolicy;
 import baseball.service.*;
 
 public class AppConfig {
@@ -9,15 +10,23 @@ public class AppConfig {
     }
 
     public MakeInputService makeInputService() {
-        return new MakeInputService();
+        return new MakeInputService(splitService(), checkAllDifferentAndNotZeroPolicy());
+    }
+
+    public SplitService splitService(){
+        return new SplitService();
+    }
+
+    public CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy(){
+        return new CheckAllDifferentAndNotZeroPolicy();
     }
 
     public MakeRandomAnswerService makeRandomAnswerService() {
-        return new MakeRandomAnswerService();
+        return new MakeRandomAnswerService(checkAllDifferentAndNotZeroPolicy());
     }
 
-    public PrintScore printScore() {
-        return new PrintScore();
+    public ScoreService printScore() {
+        return new ScoreService();
     }
 
     public BaseBallGame baseBallGame() {

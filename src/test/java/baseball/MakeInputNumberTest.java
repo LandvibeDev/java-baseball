@@ -1,43 +1,48 @@
 package baseball;
 
-import baseball.domain.Form;
-import baseball.domain.Number;
-import baseball.service.MakeInputService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 public class MakeInputNumberTest {
 
-    AppConfig appConfig = new AppConfig();
+    AppConfig testAppConfig = new AppConfig();
+
     @Test
     void input_숫자_생성확인() {
         //given
 
         //when
         int number = 123;
-        Number inputNumber = appConfig.makeInputService().makeNumber(number);
-
-        int first = inputNumber.getFirst();
-        int second = inputNumber.getSecond();
-        int third = inputNumber.getThird();
-        Form form = inputNumber.getForm();
+        Map<Integer, Integer> inputNumberMap = testAppConfig.makeInputService().makeNumber(number);
 
         //then
-        Assertions.assertEquals(number, first * 100 + second * 10 + third);
-        Assertions.assertEquals(form, Form.INPUT);
+
+        Assertions.assertEquals(0, inputNumberMap.get(1));
+        Assertions.assertEquals(1, inputNumberMap.get(2));
+        Assertions.assertEquals(2, inputNumberMap.get(3));
     }
 
     @Test
     void input_에러_확인() {
         //given
-        MakeInputService makeInputService = appConfig.makeInputService();
+        int duplicateError = 111;
+        int underNumberError = 12;
+        int overNumberError = 1000;
 
         //when
-        int errorNumber = 111;
 
         //then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> makeInputService.makeNumber(errorNumber));
+                () -> testAppConfig.makeInputService().makeNumber(duplicateError));
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> testAppConfig.makeInputService().makeNumber(underNumberError));
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> testAppConfig.makeInputService().makeNumber(overNumberError));
 
     }
+
 }

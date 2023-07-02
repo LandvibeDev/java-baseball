@@ -4,7 +4,7 @@ import baseball.constant.Message;
 import baseball.constant.Number;
 import baseball.domain.Score;
 
-public class PrintScore {
+public class ScoreService {
 
     private void printBallScore(Score score) {
         int ball = score.getBall();

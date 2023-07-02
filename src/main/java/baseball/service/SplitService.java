@@ -1,29 +1,37 @@
 package baseball.service;
 
-import baseball.domain.Form;
-import baseball.domain.Number;
+import baseball.constant.Number;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SplitService {
 
-    public static Number split(int number, Form form) {
-        if (number < 100 || number > 999) {
+    private boolean isValidRangeNumber(int number) {
+        int minRange = (int) Math.pow(10, Number.LENGTH_OF_INPUT.value() - 1);
+        int maxRange = (int) Math.pow(10, Number.LENGTH_OF_INPUT.value()) - 1;
+
+        if (minRange <= number && number <= maxRange)
+            return true;
+        return false;
+    }
+
+    public Map<Integer, Integer> split(int number) {
+        Map<Integer, Integer> numberMap = new HashMap<>();
+
+        if (!isValidRangeNumber(number)) {
             throw new IllegalArgumentException();
         }
 
-        int first;
-        int second;
-        int third;
+        for (int i = 0; i < Number.LENGTH_OF_INPUT.value(); i++) {
+            int key = number % 10;
+            int value = Number.LENGTH_OF_INPUT.value() - 1 - i;
 
-        third = number % 10;
-        number /= 10;
+            numberMap.put(key, value);
+            number /= 10;
+        }
 
-        second = number % 10;
-        number /= 10;
-
-        first = number;
-
-        Number inputNumberObject = new Number(first, second, third, form);
-        return inputNumberObject;
+        return numberMap;
     }
 
 }

@@ -1,22 +1,34 @@
 package baseball.service;
 
-import baseball.domain.Form;
-import baseball.domain.Number;
+import baseball.constant.Number;
+import baseball.policy.CheckAllDifferentAndNotZeroPolicy;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static baseball.policy.CheckAllDifferentAndNotZeroPolicy.isValidNumber;
+import java.util.*;
 
 public class MakeRandomAnswerService {
-    public Number makeNumber(int number) {
-        while (true) {
-            int first = Randoms.pickNumberInRange(1, 9);
-            int second = Randoms.pickNumberInRange(1, 9);
-            int third = Randoms.pickNumberInRange(1, 9);
-            //System.out.println("debug :: " + number);
-            Number answerNumber = new Number(first, second, third, Form.ANSWER);
 
-            if (isValidNumber(answerNumber)) {
-                return answerNumber;
+    private final CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy;
+
+    public MakeRandomAnswerService(CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy) {
+        this.checkAllDifferentAndNotZeroPolicy = checkAllDifferentAndNotZeroPolicy;
+    }
+
+    public Map<Integer, Integer> makeRandomNumber() {
+        while (true) {
+            Map<Integer, Integer> randomNumberMap = new HashMap<>();
+
+            for (int index = 0; index < Number.LENGTH_OF_INPUT.value(); index++) {
+                randomNumberMap.put(Randoms.pickNumberInRange(1, 9), index);
+            }
+
+/*            System.out.println("debug ::");
+            for (int key : randomNumberMap.keySet())
+                System.out.print(key);
+            System.out.println();*/
+
+            if (checkAllDifferentAndNotZeroPolicy.isValidNumber(randomNumberMap)) {
+                return randomNumberMap;
             }
         }
     }

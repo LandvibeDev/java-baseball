@@ -1,30 +1,27 @@
 package baseball;
 
-import baseball.domain.Number;
+import baseball.constant.Number;
+import baseball.service.MakeRandomAnswerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 public class MakeRandomNumberTest {
 
-    AppConfig appConfig = new AppConfig();
+    AppConfig testAppConfig = new AppConfig();
+    MakeRandomAnswerService makeRandomAnswerService = testAppConfig.makeRandomAnswerService();
+
     @Test
     void 랜덤_숫자_생성확인() {
         //given
 
         //when
-        Number answerNumber = appConfig.makeRandomAnswerService().makeNumber(-1);
-        int first = answerNumber.getFirst();
-        int second = answerNumber.getSecond();
-        int third = answerNumber.getThird();
+        Map<Integer, Integer> randomNumberMap = makeRandomAnswerService.makeRandomNumber();
 
         //then
-        Assertions.assertNotEquals(first, 0);
-        Assertions.assertNotEquals(second, 0);
-        Assertions.assertNotEquals(third, 0);
-
-        Assertions.assertNotEquals(first, second);
-        Assertions.assertNotEquals(second, third);
-        Assertions.assertNotEquals(first, third);
+        Assertions.assertFalse(randomNumberMap.containsKey(0));
+        Assertions.assertEquals(Number.LENGTH_OF_INPUT.value(), randomNumberMap.size());
 
     }
 }
