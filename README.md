@@ -127,3 +127,45 @@
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 - 프로그램 구현을 완료했을 때 `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
+
+
+
+### 기능 목록
+
+1. 랜덤 숫자 생성
+   1. SplitService 클래스로 숫자 쪼개기
+   2. CheckValidNumberPolicy 로 모두 다른 숫자이고, 1~9 범위의 숫자인지 확인
+   3. MakeAnswerService 를 통해 AnswerRepository 에 저장해서 보관
+
+2. player input 생성 // input 이 비정상적일 경우 IllegalArgumentException
+   1. Application 에서 input 숫자를 입력으로 받기
+   2. MakeInputService 를 통해
+      1. SplitService 클래스로 숫자 쪼개기, (쪼개면서 범위에 어긋난 숫자이면 throw IllegalArgumentException )
+      2. CheckValidPolicy 를 통해 모두 다른 숫자이고, 1~9 범위의 숫자인지 확인 (if return false, throw IllegalArgumentException)
+      3. player input 객체(Number) 생성
+
+3. player input 과 answer 간 비교를 통해 결과 만들기
+   1. ANSWER, INPUT 객체를 넘겨서 OUTPUT 객체 return
+   2. OUTPUT 객체를 통해 실행 결과를 출력
+   3. if 3 strike, 게임 다시시작? 끝내기 else 다시 input 받기
+
+### 리펙토링
+ [과제의 목적]
+ 1. 요구사항을 충족하는가?
+ 2. 클래스와 메소드 설계가 자연스러운가?
+ 3. 코드 가독성을 크게 해치지 않은가?
+
+ 자바라는 언어의 특성에 맞게 '자연스럽게' 리펙토링하기
+ 클래스, 메소드명 자연스럽게 변경 (domain)
+ DDD?
+
+ 1. 콘솔 프로그래밍이기 때문에 singleton 불필요
+ 2. printOutput : 메소드가 글처럼 읽히는 코드가 되도록 출력부분들을 메소드로 분리해봅시다.
+ 3. 상수는 별개의 공간에 나누어 보기
+ 4. return 은 변수에 초기화 해서 작성
+ 5. 불필요한 예외처리 수정
+ 6. BaseBallGame 외부에서 의존성 주입하도록 하기
+ 7. 불필요한 interface 삭제
+ 8. 숫자 길이에 의존하지 않게 리펙토링
+ 9. 숫자 범위같은 조건문을 별도의 메소드로 분리
+ 10. 테스트 코드 수정
