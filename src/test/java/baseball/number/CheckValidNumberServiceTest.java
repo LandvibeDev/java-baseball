@@ -61,8 +61,8 @@ class CheckValidNumberServiceTest {
         //when
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> {
-            checkValidNumberService.convertToInt(errorInput);
-        });
+        assertThrows(IllegalArgumentException.class, () ->
+                checkValidNumberService.convertToInt(errorInput)
+        );
     }
 }

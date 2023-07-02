@@ -22,9 +22,9 @@ class SplitServiceTest {
         //when
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> {
-            splitService.split(errorNumber);
-        });
+        assertThrows(IllegalArgumentException.class, () ->
+                splitService.split(errorNumber)
+        );
     }
 
     @Test
