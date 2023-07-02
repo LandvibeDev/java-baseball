@@ -17,13 +17,18 @@ public class GameController {
             Number generatedNumber = numberManager.generate(START.value(), END.value(), COUNT.value());
 
             while (true) {
-                Number inputNumber = readInput();
-                Score score = numberManager.calculate(inputNumber, generatedNumber);
-                println(score.toString());
-                if (score.isDone()) {
-                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-                    break;
+                try {
+                    Number inputNumber = readInput();
+                    Score score = numberManager.calculate(inputNumber, generatedNumber);
+                    println(score.toString());
+                    if (score.isDone()) {
+                        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                        break;
+                    }
+                } catch (IllegalArgumentException ex) {
+                    println("[ERROR] " + ex.getMessage());
                 }
+
             }
 
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -38,7 +43,7 @@ public class GameController {
         System.out.println(str);
     }
 
-    private Number readInput() {
+    private Number readInput() throws IllegalArgumentException {
         String input = Console.readLine();
         return numberManager.parseInput(input);
     }
