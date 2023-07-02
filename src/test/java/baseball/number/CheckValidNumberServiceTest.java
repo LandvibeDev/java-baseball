@@ -31,16 +31,6 @@ class CheckValidNumberServiceTest {
         Assertions.assertThat(checkValidNumberService.isValidRangeNumber(100)).isEqualTo(true);
     }
 
-    public boolean isValidNumberMap(Map<Integer, Integer> randomNumberMap) {
-        if (randomNumberMap.size() != Number.LENGTH_OF_INPUT.value())
-            return false;
-
-        if (randomNumberMap.containsKey(0))
-            return false;
-
-        return true;
-    }
-
     @Test
     @DisplayName("적절한 데이터는 상수와 map의 사이즈가 동일하고, 0이 없어야 하며 invalid 할 시 false 반환")
     void isValidNumberMap() {
