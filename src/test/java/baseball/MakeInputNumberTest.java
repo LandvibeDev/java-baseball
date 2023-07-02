@@ -14,8 +14,8 @@ public class MakeInputNumberTest {
         //given
 
         //when
-        int number = 123;
-        Map<Integer, Integer> inputNumberMap = testAppConfig.makeInputService().makeNumber(number);
+        String command = "123";
+        Map<Integer, Integer> inputNumberMap = testAppConfig.makeInputNumberService().makeInputNumberMap(command);
 
         //then
 
@@ -27,21 +27,21 @@ public class MakeInputNumberTest {
     @Test
     void input_에러_확인() {
         //given
-        int duplicateError = 111;
-        int underNumberError = 12;
-        int overNumberError = 1000;
+        String duplicateErrorNumber = "111";
+        String underNumberErrorNumber = "12";
+        String overNumberErrorNumber = "1000";
 
         //when
 
         //then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> testAppConfig.makeInputService().makeNumber(duplicateError));
+                () -> testAppConfig.makeInputNumberService().makeInputNumberMap(duplicateErrorNumber));
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> testAppConfig.makeInputService().makeNumber(underNumberError));
+                () -> testAppConfig.makeInputNumberService().makeInputNumberMap(underNumberErrorNumber));
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> testAppConfig.makeInputService().makeNumber(overNumberError));
+                () -> testAppConfig.makeInputNumberService().makeInputNumberMap(overNumberErrorNumber));
 
     }
 

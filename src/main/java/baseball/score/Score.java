@@ -1,4 +1,7 @@
-package baseball.domain;
+package baseball.score;
+
+import baseball.constant.Message;
+import baseball.constant.Number;
 
 public class Score {
     private int strike;
@@ -23,5 +26,13 @@ public class Score {
 
     public void addBall() {
         ball++;
+    }
+
+    public boolean checkGameSuccess() {
+        if (this.strike == Number.LENGTH_OF_INPUT.value()) {
+            System.out.println(Message.CLEAR_GAME.get());
+            return true;
+        }
+        return false;
     }
 }

@@ -1,10 +1,8 @@
-package baseball.service;
+package baseball.score;
 
 import baseball.constant.Message;
-import baseball.constant.Number;
-import baseball.domain.Score;
 
-public class ScoreService {
+public class PrintScoreService {
 
     private void printBallScore(Score score) {
         int ball = score.getBall();
@@ -23,7 +21,6 @@ public class ScoreService {
     private void printIfScoreIsNothing(Score score) {
         int strike = score.getStrike();
         int ball = score.getBall();
-
         if (ball == 0 && strike == 0) {
             System.out.print(Message.NOTHING.get());
         }
@@ -33,17 +30,7 @@ public class ScoreService {
         printBallScore(score);
         printStrikeScore(score);
         printIfScoreIsNothing(score);
-
         System.out.println();
     }
 
-    public boolean isGameSuccess(Score score) {
-        int strike = score.getStrike();
-
-        if (strike == Number.LENGTH_OF_INPUT.value()) {
-            System.out.println(Message.CLEAR_GAME.get());
-            return true;
-        }
-        return false;
-    }
 }

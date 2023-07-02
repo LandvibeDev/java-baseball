@@ -1,10 +1,8 @@
-package baseball.service;
-
-import baseball.domain.Score;
+package baseball.score;
 
 import java.util.Map;
 
-public class CompareNumberService {
+public class MakeScoreService {
 
     private Score checkStrikeOrBall(Score score, int randomValue, int inputValue) {
         if (randomValue == inputValue) {
@@ -15,7 +13,7 @@ public class CompareNumberService {
         return score;
     }
 
-    public Score compareNumbers(Map<Integer, Integer> randomNumberMap, Map<Integer, Integer> inputNumberMap) {
+    public Score compareNumbersAndMakeScore(Map<Integer, Integer> randomNumberMap, Map<Integer, Integer> inputNumberMap) {
         Score score = new Score();
 
         for (int key : inputNumberMap.keySet()) {
@@ -26,4 +24,5 @@ public class CompareNumberService {
 
         return score;
     }
+
 }

@@ -1,4 +1,4 @@
-package baseball.service;
+package baseball.number;
 
 import baseball.constant.Number;
 
@@ -7,22 +7,18 @@ import java.util.Map;
 
 public class SplitService {
 
-    private boolean isValidRangeNumber(int number) {
-        int minRange = (int) Math.pow(10, Number.LENGTH_OF_INPUT.value() - 1);
-        int maxRange = (int) Math.pow(10, Number.LENGTH_OF_INPUT.value()) - 1;
+    private final CheckValidNumberService checkValidNumberService;
 
-        if (minRange <= number && number <= maxRange)
-            return true;
-        return false;
+    public SplitService(CheckValidNumberService checkValidNumberService) {
+        this.checkValidNumberService = checkValidNumberService;
     }
 
     public Map<Integer, Integer> split(int number) {
-        Map<Integer, Integer> numberMap = new HashMap<>();
-
-        if (!isValidRangeNumber(number)) {
+        if (!checkValidNumberService.isValidRangeNumber(number)) {
             throw new IllegalArgumentException();
         }
 
+        Map<Integer, Integer> numberMap = new HashMap<>();
         for (int i = 0; i < Number.LENGTH_OF_INPUT.value(); i++) {
             int key = number % 10;
             int value = Number.LENGTH_OF_INPUT.value() - 1 - i;

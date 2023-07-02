@@ -1,36 +1,40 @@
 package baseball;
 
-import baseball.policy.CheckAllDifferentAndNotZeroPolicy;
-import baseball.service.*;
+import baseball.number.MakeInputNumberService;
+import baseball.number.MakeRandomNumberService;
+import baseball.number.SplitService;
+import baseball.score.MakeScoreService;
+import baseball.score.PrintScoreService;
+import baseball.number.CheckValidNumberService;
 
 public class AppConfig {
 
-    public CompareNumberService compareNumberService() {
-        return new CompareNumberService();
+    public MakeScoreService makeScoreService() {
+        return new MakeScoreService();
     }
 
-    public MakeInputService makeInputService() {
-        return new MakeInputService(splitService(), checkAllDifferentAndNotZeroPolicy());
+    public MakeInputNumberService makeInputNumberService() {
+        return new MakeInputNumberService(splitService(), checkValidNumberService());
     }
 
-    public SplitService splitService(){
-        return new SplitService();
+    public SplitService splitService() {
+        return new SplitService(checkValidNumberService());
     }
 
-    public CheckAllDifferentAndNotZeroPolicy checkAllDifferentAndNotZeroPolicy(){
-        return new CheckAllDifferentAndNotZeroPolicy();
+    public CheckValidNumberService checkValidNumberService() {
+        return new CheckValidNumberService();
     }
 
-    public MakeRandomAnswerService makeRandomAnswerService() {
-        return new MakeRandomAnswerService(checkAllDifferentAndNotZeroPolicy());
+    public MakeRandomNumberService makeRandomNumberService() {
+        return new MakeRandomNumberService(checkValidNumberService());
     }
 
-    public ScoreService printScore() {
-        return new ScoreService();
+    public PrintScoreService printScoreService() {
+        return new PrintScoreService();
     }
 
     public BaseBallGame baseBallGame() {
-        return new BaseBallGame(makeRandomAnswerService(), makeInputService(), compareNumberService(), printScore());
+        return new BaseBallGame(makeRandomNumberService(), makeInputNumberService(), makeScoreService(), printScoreService(), checkValidNumberService());
     }
 
 
