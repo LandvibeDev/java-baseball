@@ -13,14 +13,14 @@ public class Validation {
     }
 
     private void lengthCheck(String inputString) {
-        if (inputString.length() != Rule.number) {
+        if (inputString.length() != Rule.NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.WRONG_LENGTH.message);
         }
     }
 
     private void characterCheck(String inputString) {
         String pattern = makeRegularExpression();
-        for (int i = 0; i < Rule.number; i++) {
+        for (int i = 0; i < Rule.NUMBER; i++) {
             if (!Pattern.matches(pattern, inputString)) {
                 throw new IllegalArgumentException(ExceptionMessage.WRONG_CHARACTER.message);
             }
@@ -28,7 +28,7 @@ public class Validation {
     }
 
     private String makeRegularExpression() {
-        return "^[" + Rule.start + "-" + Rule.end +"]*$";
+        return "^[" + Rule.START + "-" + Rule.END +"]*$";
     }
 
     private void duplicationCheck(String inputString) {

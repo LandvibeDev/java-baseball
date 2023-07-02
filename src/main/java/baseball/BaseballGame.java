@@ -42,7 +42,7 @@ public class BaseballGame {
         String inputString = Console.readLine();
         Validation validation = new Validation();
         validation.validateInput(inputString);
-        for (int i = 0; i < Rule.number; i++) {
+        for (int i = 0; i < Rule.NUMBER; i++) {
             inputNumbers.add(inputString.charAt(i) - '0');
         }
     }
@@ -54,12 +54,12 @@ public class BaseballGame {
 
     private void checkStrikeAndBall() {
         initializeScore();
-        for (int i = 0; i <Rule.number; i++) {
+        for (int i = 0; i <Rule.NUMBER; i++) {
             if (randomNumbers.get(i) == inputNumbers.get(i)) {
                 strike++;
                 inputNumbers.set(i, -1);
             }
-            for (int j = 0; j < Rule.number; j++) {
+            for (int j = 0; j < Rule.NUMBER; j++) {
                 if (randomNumbers.get(i) == inputNumbers.get(j)) {
                     ball++;
                 }
@@ -85,12 +85,12 @@ public class BaseballGame {
     }
 
     private void printWhenSuccess() {
-        System.out.println(Rule.number + SUCCESS.message);
+        System.out.println(Rule.NUMBER + SUCCESS.message);
         System.out.println(ASK_RETRY.message);
     }
 
     private boolean isSuccess() {
-        if (strike == Rule.number) {
+        if (strike == Rule.NUMBER) {
             printWhenSuccess();
             return true;
         }

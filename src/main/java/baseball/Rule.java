@@ -1,7 +1,7 @@
 package baseball;
 
 public class Rule {
-    static final int start = 1;
-    static final int end = 9;
-    static final int number = 3;
+    static final int START = 1;
+    static final int END = 9;
+    static final int NUMBER = 3;
 }
