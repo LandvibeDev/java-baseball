@@ -1,13 +1,19 @@
-package baseball;
+package baseball.number;
 
+import baseball.AppConfig;
 import baseball.constant.Number;
-import baseball.number.MakeRandomNumberService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-public class MakeRandomNumberTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class MakeRandomNumberServiceTest {
+
+    @Test
+    void makeRandomNumberMap() {
+    }
 
     AppConfig testAppConfig = new AppConfig();
     MakeRandomNumberService makeRandomAnswerService = testAppConfig.makeRandomNumberService();

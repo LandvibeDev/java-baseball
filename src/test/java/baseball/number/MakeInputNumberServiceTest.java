@@ -1,11 +1,18 @@
-package baseball;
+package baseball.number;
 
+import baseball.AppConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-public class MakeInputNumberTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class MakeInputNumberServiceTest {
+
+    @Test
+    void makeInputNumberMap() {
+    }
 
     AppConfig testAppConfig = new AppConfig();
 
@@ -44,5 +51,4 @@ public class MakeInputNumberTest {
                 () -> testAppConfig.makeInputNumberService().makeInputNumberMap(overNumberErrorNumber));
 
     }
-
 }
