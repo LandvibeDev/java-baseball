@@ -1,7 +1,8 @@
 package baseball;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-
+import static baseball.NumberInfo.*;
+import static baseball.Message.*;
 public class BaseballGame {
     ComputerFunction computerFunction = new ComputerFunction();
     public void run(){
@@ -22,14 +23,14 @@ public class BaseballGame {
     }
 
     private boolean askRestartGame(){
-        System.out.println(Message.RESTART_QUESTION_MESSAGE.getMessage());
+        System.out.println(RESTART_QUESTION_MESSAGE.getMessage());
         String cmd = Console.readLine();
         int restart = Integer.parseInt(cmd);
 
-        if(restart == NumberInfo.RESTART_TRUE_NUMBER.getNumberInfo()){
+        if(restart == RESTART_TRUE_NUMBER.getNumberInfo()){
             return true;
         }
-        else if(restart == NumberInfo.RESTART_FALSE_NUMBER.getNumberInfo()){
+        if(restart == RESTART_FALSE_NUMBER.getNumberInfo()){
             return false;
         }
 
