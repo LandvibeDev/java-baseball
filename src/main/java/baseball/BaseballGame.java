@@ -1,10 +1,13 @@
 package baseball;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.List;
+
 import static baseball.NumberInfo.*;
 import static baseball.Message.*;
 public class BaseballGame {
     ComputerFunction computerFunction = new ComputerFunction();
+
     public void run(){
         while(true) {
             playGame();
@@ -17,8 +20,7 @@ public class BaseballGame {
     }
 
     private void playGame(){
-        ArrayList<Integer> randomNumberlist = new ArrayList<Integer>();
-        computerFunction.createRandomNumber(randomNumberlist);
+        List<Integer> randomNumberlist = computerFunction.createRandomNumber();
         computerFunction.countCalculate(randomNumberlist);
     }
 
@@ -36,5 +38,4 @@ public class BaseballGame {
 
         throw new IllegalArgumentException();
     }
-
 }

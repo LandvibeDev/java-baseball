@@ -1,12 +1,17 @@
 package baseball;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.List;
+
 import static baseball.NumberInfo.*;
 import static baseball.Message.*;
 
 public class ComputerFunction {
     UserFunction userFunction = new UserFunction();
-    public void createRandomNumber(ArrayList<Integer> randomNumber){
+
+    public List<Integer> createRandomNumber(){
+        List<Integer> randomNumber = new ArrayList<>();
+
         while(randomNumber.size() < SIZE_OF_NUMBER.getNumberInfo()){
             int tmp = Randoms.pickNumberInRange(START_OF_RANGE.getNumberInfo(), END_OF_RANGE.getNumberInfo());
 
@@ -14,8 +19,11 @@ public class ComputerFunction {
                 randomNumber.add(tmp);
             }
         }
+
+        return randomNumber;
     }
-    public void countCalculate(ArrayList<Integer> randomNumber){
+
+    public void countCalculate(List<Integer> randomNumber){
         while(true) {
             String userNumber = userFunction.getUserNumber();
 

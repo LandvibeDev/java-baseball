@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ExceptionContoller {
+
     public void notIntegerException(String Number){   //정수 이외 값 불가
         for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){     //입력 받은 값이 숫자 이외의 값인 경우 에외처리
             if(!Character.isDigit(Number.charAt(i))){
@@ -11,6 +12,7 @@ public class ExceptionContoller {
             }
         }
     }
+
     public void reduplicationException(String Number){    //중복 불가
         Set<Character> set = new HashSet<Character>();
         for(int i=0; i<NumberInfo.SIZE_OF_NUMBER.getNumberInfo(); i++){
