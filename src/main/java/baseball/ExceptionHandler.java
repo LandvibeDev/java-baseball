@@ -1,13 +1,13 @@
 package baseball;
 
-import static baseball.Constants.*;
+import static Constants.Values.*;
 
 import java.util.ArrayList;
 
 public class ExceptionHandler {
 
 	public void handleInvalidSelection(Integer selection) {
-		if (!selection.equals(getPlayGame()) && !selection.equals(getEndGame())) {
+		if (!selection.equals(getPlayGameSelection()) && !selection.equals(getEndGameSelection())) {
 			throw new IllegalArgumentException();
 		}
 	}

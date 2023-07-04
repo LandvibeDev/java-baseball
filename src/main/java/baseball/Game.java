@@ -1,6 +1,7 @@
 package baseball;
 
-import static baseball.Constants.*;
+import static Constants.Messages.*;
+import static Constants.Values.*;
 
 import java.util.ArrayList;
 
@@ -13,16 +14,18 @@ public class Game {
 	Judge judge;
 	ExceptionHandler handler;
 	Target target;
+	Printer printer;
 
 	public Game() {
 		handler = new ExceptionHandler();
+		printer = new Printer();
 	}
 
 	public void execution() {
-		playGame = getPlayGame();
-		while (playGame == getPlayGame()) {
-			this.play();
-			System.out.print(getEndGameMessage());
+		playGame = getPlayGameSelection();
+		while (playGame == getPlayGameSelection()) {
+			play();
+			printer.printEndGameMessage();
 			playGame = Integer.parseInt(Console.readLine());
 			handler.handleInvalidSelection(playGame);
 
@@ -35,15 +38,15 @@ public class Game {
 		while (!judge.isCorrect()) {
 			input();
 			judge.scoring(in);
-			judge.printScore();
-			System.out.println();
+			printer.printScore(judge.getStrike(), judge.getBall());
+			printer.printEndLine();
 		}
 	}
 
 	public void input() {
 		in = new ArrayList<>();
 		String inStr = "";
-		System.out.print(getGuessNumberMessage());
+		printer.printGuessNumberMessage();
 		inStr = Console.readLine();
 		handler.handleInvalidLength(inStr.length());
 

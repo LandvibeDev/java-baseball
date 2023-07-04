@@ -1,6 +1,6 @@
 package baseball;
 
-import static baseball.Constants.*;
+import static Constants.Values.*;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Target {
 
-	private ArrayList<Integer> target;
+	private final ArrayList<Integer> target;
 
 	public Target() {
 		target = new ArrayList<>();

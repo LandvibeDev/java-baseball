@@ -1,6 +1,7 @@
 package baseball;
 
-import static baseball.Constants.*;
+import static Constants.Values.*;
+import static Constants.Messages.*;
 
 import java.util.ArrayList;
 
@@ -41,22 +42,15 @@ public class Judge {
 		return tmp;
 	}
 
-	public void printScore() {
-		if (this.ball == 0 && this.strike == 0) {
-			System.out.println(getNothingString());
-			return;
-		}
-		if (this.ball != 0) {
-			System.out.print(this.ball + getBallString());
-		}
-		if (this.strike != 0) {
-			if (this.ball != 0) {
-				System.out.print(getSPACE());
-			}
-			System.out.print(this.strike + getStrikeString());
-		}
+	public int getStrike() {
+		return strike;
 	}
-	public boolean isCorrect(){
+
+	public int getBall() {
+		return ball;
+	}
+
+	public boolean isCorrect() {
 		return correct;
 	}
 
